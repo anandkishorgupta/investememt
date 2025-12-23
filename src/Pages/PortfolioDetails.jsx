@@ -1,8 +1,6 @@
-import React from "react";
-import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FiMapPin, FiUsers, FiAward, FiArrowLeft } from "react-icons/fi";
-import { useEffect } from "react";
+import { FiArrowLeft, FiMapPin } from "react-icons/fi";
+import { Link, useParams } from "react-router-dom";
 import { portfolioData } from "../Constant/portfolioInfo";
 
 const PortfolioDetails = () => {
@@ -22,11 +20,6 @@ const PortfolioDetails = () => {
     show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
   };
 
-  // scroll to top while visiting this page
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="bg-neutral-50 min-h-screen text-neutral-900">
       {/* Back Button */}
@@ -38,7 +31,7 @@ const PortfolioDetails = () => {
       >
         <Link
           to="/portfolio"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 backdrop-blur border border-neutral-200 text-sm hover:text-amber-600 transition"
+          className="mt-15 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 backdrop-blur border border-neutral-200 text-sm hover:text-amber-600 transition"
         >
           <FiArrowLeft /> Back
         </Link>
@@ -121,12 +114,12 @@ const PortfolioDetails = () => {
             <div className="flex items-center gap-3 text-neutral-700">
               <FiMapPin className="text-amber-600" /> {company.location}
             </div>
-            <div className="flex items-center gap-3 text-neutral-700">
+            {/* <div className="flex items-center gap-3 text-neutral-700">
               <FiUsers className="text-amber-600" /> {company.clients}
             </div>
             <div className="flex items-center gap-3 text-neutral-700">
               <FiAward className="text-amber-600" /> {company.investment}
-            </div>
+            </div> */}
           </motion.div>
         </motion.div>
       </section>

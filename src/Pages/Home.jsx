@@ -1,8 +1,11 @@
-import React from "react";
-import Hero from "../components/sections/Hero";
+import { useEffect, useState } from "react";
+import BOD from "../components/BOD/BOD";
+import Hero from "../components/Hero/Hero";
+import HowWeDo from "../components/HowWeDo/HowWeDo";
 import NoticeModal from "../components/Modal/NoticeModal";
-import { useState } from "react";
-import { useEffect } from "react";
+import WhatWeDo from "../components/WhatWeDo/WhatWeDo";
+import OurServices from "../components/ourServices/OurServices";
+import WhyUs from "../components/whyUs/WhyUs";
 
 const Home = () => {
   const [open, setOpen] = useState(false);
@@ -15,12 +18,16 @@ const Home = () => {
     <div>
       <NoticeModal open={open} onClose={() => setOpen(false)} />
       <div
-        className={`transition duration-300 ${
-          open ? "blur-md pointer-events-none select-none" : ""
-        }`}
+        className={`transition duration-300 ${open ? "blur-md pointer-events-none select-none" : ""
+          }`}
       >
-        <Hero />
       </div>
+      <Hero />
+      <WhyUs />
+      <WhatWeDo />
+      <OurServices />
+      <HowWeDo />
+      <BOD />
     </div>
   );
 };

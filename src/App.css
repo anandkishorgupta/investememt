@@ -1,0 +1,112 @@
+/* App.css */
+
+/* Always reserve space for vertical scrollbar to prevent layout shift */
+html {
+  overflow-y: scroll;
+}
+
+
+.globalContainer {
+  max-width: 1360px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;  /* px-5 = 1.25rem */
+  padding-right: 1.25rem;
+  background-color: #B8973A
+
+}
+
+@media (min-width: 768px) { /* md breakpoint */
+  .globalContainer {
+    padding-left: 2rem;  /* px-8 = 2rem */
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) { /* lg breakpoint */
+  .globalContainer {
+    padding-left: 2rem;  /* px-8 = 2rem */
+    padding-right: 2rem;
+  }
+}
+
+/* ------------------------------------------------------------------------------ */
+.text_golden_color{
+  color: #B8973A;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+@keyframes raySweep {
+  0%, 100% {
+    transform: translateY(-50%) rotate(var(--ray-angle)) translateX(-50%);
+    opacity: 0.1;
+  }
+  50% {
+    transform: translateY(-50%) rotate(var(--ray-angle)) translateX(-30%);
+    opacity: 0.3;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background-color: white;
+  animation: twinkle var(--duration, 2s) infinite alternate;
+}
+
+.bright-star {
+  animation: pulse 3s infinite alternate !important;
+}
+
+.god-ray {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--ray-width);
+  height: var(--ray-length);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.1) 70%,
+    transparent
+  );
+  transform-origin: center top;
+  transform: translateY(-50%) rotate(var(--ray-angle)) translateX(-50%);
+  filter: blur(2px);
+  animation-delay: var(--ray-delay);
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}

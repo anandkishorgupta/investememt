@@ -1,2 +1,20 @@
-@import "tailwindcss";
+ @import "tailwindcss"; 
+
+
+/* .globalContainer {
+  @apply max-w-[100px] mx-auto px-5 md:px-8 lg:px-8;
+} */ */
+
+/* global.css */
+
+/* Import base styles */
+
+/* Import utilities */
+/* @import "tailwindcss/utilities"; */
+
+/* Your custom reusable class */
+.globalContainer {
+  @apply max-w-[1360px] mx-auto px-5 md:px-8 lg:px-8;
+}
+
 
