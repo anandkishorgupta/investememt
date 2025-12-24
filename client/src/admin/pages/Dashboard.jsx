@@ -56,18 +56,43 @@ const DashboardPage = () => {
   ]);
   
   const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
 
   // Fetch dashboard data
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
       
+      // Get auth token
+      const token = localStorage.getItem('adminToken');
+      
+      if (!token) {
+        console.error('No authentication token found');
+        return;
+      }
+      
       // Fetch counts from all APIs
       const [mediaRes, pressRes, newsRes, contactRes] = await Promise.all([
-        fetch(`${API_URL}/api/media`),
-        fetch(`${API_URL}/api/press`),
-        fetch(`${API_URL}/api/news`),
-        fetch(`${API_URL}/api/contact`)
+        fetch(`${API_URL}/api/media`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }),
+        fetch(`${API_URL}/api/press`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }),
+        fetch(`${API_URL}/api/news`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }),
+        fetch(`${API_URL}/api/contact`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
       ]);
       
       const [mediaResult, pressResult, newsResult, contactResult] = await Promise.all([

@@ -2,7 +2,6 @@ import { MoreVertical } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import Button from '../components/common/Button';
 import Modal from '../components/common/Modal';
-// const API_URL_UPLOADS = import.meta.env.VITE_API_UPLOADS ;
 const API_URL = import.meta.env.VITE_API_URL ;
 
 const MediaPage = () => {
@@ -17,7 +16,12 @@ const MediaPage = () => {
   const fetchMedia = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${API_URL}/api/media`);
+      const token = localStorage.getItem('adminToken');
+      const response = await fetch(`${API_URL}/api/media`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       const data = await response.json();
       // Flatten the media documents to get individual images
       const allImages = data.flatMap(media =>
@@ -27,7 +31,6 @@ const MediaPage = () => {
           imageIndex: index,
           name: url.split('/').pop(),
           url: url.startsWith('http') ? url : `${API_URL}${url}`,
-          
           uploadDate: new Date(media.createdAt).toLocaleDateString(),
           createdAt: media.createdAt
         }))
@@ -61,9 +64,13 @@ const MediaPage = () => {
   const handleDelete = async (file) => {
     if (window.confirm('Are you sure you want to delete this image?')) {
       try {
+        const token = localStorage.getItem('adminToken');
         // Use the mediaId and imageIndex from the file object
         const response = await fetch(`${API_URL}/api/media/${file.mediaId}/image/${file.imageIndex}`, {
           method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
         });
 
         if (response.ok) {
@@ -84,26 +91,96 @@ const MediaPage = () => {
     const files = Array.from(event.target.files);
     if (files.length === 0) return;
 
-    const formData = new FormData();
-    files.forEach(file => {
-      formData.append('images', file);
-    });
-
+    const token = localStorage.getItem('adminToken');
+    
+    // First, get existing media documents
+    let mediaDocument = null;
     try {
-      const response = await fetch(`${API_URL}/api/media`, {
-        method: 'POST',
-        body: formData,
+      const mediaResponse = await fetch(`${API_URL}/api/media`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
-
-      if (response.ok) {
-        await fetchMedia(); // Refresh the media list
-      } else {
-        alert('Failed to upload images');
+      const mediaData = await mediaResponse.json();
+      
+      if (mediaData && mediaData.length > 0) {
+        // Use the first existing media document
+        mediaDocument = mediaData[0];
       }
     } catch (error) {
-      console.error('Error uploading files:', error);
-      alert('Failed to upload images');
+      console.error('Error getting media documents:', error);
+      alert(`Failed to get media documents: ${error.message}`);
+      return;
     }
+
+    // If no media document exists, create one with the first batch of images (up to 6)
+    if (!mediaDocument) {
+      const createFormData = new FormData();
+      
+      // Add up to 6 images to create the initial media document
+      const initialImagesCount = Math.min(6, files.length);
+      for (let i = 0; i < initialImagesCount; i++) {
+        createFormData.append('images', files[i]);
+      }
+      
+      try {
+        const createResponse = await fetch(`${API_URL}/api/media`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          },
+          body: createFormData,
+        });
+        
+        if (!createResponse.ok) {
+          const errorData = await createResponse.json();
+          console.error('Failed to create media document:', errorData);
+          alert(`Failed to create media document: ${errorData.message || 'Unknown error'}`);
+          return; // Stop if we can't create the initial document
+        }
+        
+        const result = await createResponse.json();
+        mediaDocument = result.data;
+        
+        // Update files array to remove the ones we already uploaded
+        files.splice(0, initialImagesCount);
+      } catch (error) {
+        console.error('Error creating media document:', error);
+        alert(`Failed to create media document: ${error.message}`);
+        return; // Stop if we can't create the initial document
+      }
+    }
+    
+    // Now upload any remaining files one by one to maintain FIFO order
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const formData = new FormData();
+      formData.append('image', file);
+
+      try {
+        const response = await fetch(`${API_URL}/api/media/${mediaDocument._id}/image`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          },
+          body: formData,
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          console.error(`Failed to upload image ${i + 1}:`, errorData);
+          alert(`Failed to upload image: ${errorData.message || 'Unknown error'}`);
+          continue; // Continue with next image even if one fails
+        }
+      } catch (error) {
+        console.error(`Error uploading image ${i + 1}:`, error);
+        alert(`Failed to upload image ${i + 1}: ${error.message}`);
+        continue; // Continue with next image even if one fails
+      }
+    }
+
+    // Refresh the media list after all uploads
+    await fetchMedia();
   };
 
   const handleView = (file) => {
@@ -112,7 +189,7 @@ const MediaPage = () => {
   };
 
   return (
-    <div ref={pageRef} className="fade-in">
+    <div ref={pageRef} className="fade-in ">
       <div className="flex justify-between items-center mb-6">
         <div>
           <h1 className="text-3xl font-bold text-gray-800">Media Gallery</h1>
@@ -190,7 +267,7 @@ const MediaPage = () => {
                   </button>
 
                   {openMenuId === file._id && (
-                    <div className="absolute right-0 mt-1 w-28 bg-white border rounded-md shadow-lg z-20">
+                    <div className="absolute right-0 mt-1 w-28 bg-white border rounded-md shadow-lg z-20 overflow-hidden">
                       <button
                         onClick={() => {
                           setOpenMenuId(null);
@@ -231,9 +308,22 @@ const MediaPage = () => {
           <p className="mt-2 text-gray-600">No media files uploaded yet</p>
         </div>
       )}
+{/* //setSelectedImage */}
 
       {/* View Modal */}
       {selectedImage && (
+//         <>
+//         <div className='border absolute h-screen w-full top-0 left-0 fixed' >
+//   <div className='relative h-full w-full'>
+//       <div className='absolute h-full w-full bg-black opacity-50' >dasvd</div>
+//        <div className='absolute h-full w-full border border-red-500 p-10' onClick={()=>{setSelectedImage(null)}}>
+        
+//         <img src={selectedImage.url} alt={selectedImage.name} className="w-full h-full object-cover" />
+//        </div>
+//   </div>
+// </div>
+        
+//         </>
         <Modal
           isOpen={viewModal}
           onClose={() => setViewModal(false)}
@@ -253,4 +343,4 @@ const MediaPage = () => {
   );
 };
 
-export default MediaPage;
+export default MediaPage; 
