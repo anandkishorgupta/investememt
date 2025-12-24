@@ -225,7 +225,7 @@ const Navbar = () => {
               <div className="flex justify-end p-4">
                 <button
                   onClick={closeMenu}
-                  className="p-2 rounded-lg text-amber-400 hover:bg-amber-500/10"
+                  className="cursor-pointer p-2 rounded-lg text-amber-400 hover:bg-amber-500/10"
                 >
                   <HiX size={24} />
                 </button>

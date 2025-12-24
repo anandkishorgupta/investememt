@@ -46,7 +46,7 @@ const HeroSlide = ({ item }) => {
           <img
             src={item.logo}
             alt={item.name}
-            className="w-48 h-48 object-contain"
+            className=" w-48 h-48 object-contain"
           />
         </div>
       </div>
