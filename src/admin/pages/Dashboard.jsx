@@ -64,10 +64,10 @@ const DashboardPage = () => {
       
       // Fetch counts from all APIs
       const [mediaRes, pressRes, newsRes, contactRes] = await Promise.all([
-        fetch(`${API_URL}/media`),
-        fetch(`${API_URL}/press`),
-        fetch(`${API_URL}/news`),
-        fetch(`${API_URL}/contact`)
+        fetch(`${API_URL}/api/media`),
+        fetch(`${API_URL}/api/press`),
+        fetch(`${API_URL}/api/news`),
+        fetch(`${API_URL}/api/contact`)
       ]);
       
       const [mediaResult, pressResult, newsResult, contactResult] = await Promise.all([

@@ -86,7 +86,8 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FiX } from "react-icons/fi";
 import { getNotices } from "../../api/notice";
-const API_URL_UPLOADS = import.meta.env.VITE_API_UPLOADS ;
+// const API_URL_UPLOADS = import.meta.env.VITE_API_UPLOADS ;
+const API_URL = import.meta.env.VITE_API_URL ;
 
 function NoticeModal({ open, onClose }) {
   const [images, setImages] = useState([]);
@@ -96,7 +97,7 @@ function NoticeModal({ open, onClose }) {
     const fetchLatestNotice = async () => {
       try {
         const data = await getNotices();
-
+console.log("data",data)
         if (data.length > 0) {
           const sortedData = data.sort(
             (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
@@ -151,7 +152,7 @@ function NoticeModal({ open, onClose }) {
             {images.map((img, idx) => (
               <img
                 key={idx}
-                src={`${API_URL_UPLOADS}${img}`}
+                src={`${API_URL}${img}`}
                 alt={`notice-${idx}`}
                 className="w-full h-auto rounded-lg"
               />

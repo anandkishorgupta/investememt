@@ -19,7 +19,7 @@ export const NotificationProvider = ({ children }) => {
   // Fetch unread count from backend
   const fetchUnreadCount = async () => {
     try {
-      const response = await fetch(`${API_URL}/contact/count/unread`);
+      const response = await fetch(`${API_URL}/api/contact/count/unread`);
       const data = await response.json();
       setUnreadCount(data.count || 0);
     } catch (error) {
@@ -30,7 +30,7 @@ export const NotificationProvider = ({ children }) => {
   // Fetch recent notifications
   const fetchNotifications = async () => {
     try {
-      const response = await fetch(`${API_URL}/contact`);
+      const response = await fetch(`${API_URL}/api/contact`);
       const result = await response.json();
       // With pagination, data is now in result.messages
       const messages = Array.isArray(result) ? result : result.messages || [];
@@ -45,7 +45,7 @@ export const NotificationProvider = ({ children }) => {
   // Mark a notification as read
   const markAsRead = async (id) => {
     try {
-      await fetch(`${API_URL}/contact/${id}/read`, {
+      await fetch(`${API_URL}/api/contact/${id}/read`, {
         method: 'PATCH',
       });
       // Update local state

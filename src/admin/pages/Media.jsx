@@ -2,7 +2,7 @@ import { MoreVertical } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import Button from '../components/common/Button';
 import Modal from '../components/common/Modal';
-const API_URL_UPLOADS = import.meta.env.VITE_API_UPLOADS ;
+// const API_URL_UPLOADS = import.meta.env.VITE_API_UPLOADS ;
 const API_URL = import.meta.env.VITE_API_URL ;
 
 const MediaPage = () => {
@@ -17,7 +17,7 @@ const MediaPage = () => {
   const fetchMedia = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${API_URL}/media`);
+      const response = await fetch(`${API_URL}/api/media`);
       const data = await response.json();
       // Flatten the media documents to get individual images
       const allImages = data.flatMap(media =>
@@ -26,7 +26,7 @@ const MediaPage = () => {
           mediaId: media._id,
           imageIndex: index,
           name: url.split('/').pop(),
-          url: url.startsWith('http') ? url : `${API_URL_UPLOADS}${url}`,
+          url: url.startsWith('http') ? url : `${API_URL}${url}`,
           
           uploadDate: new Date(media.createdAt).toLocaleDateString(),
           createdAt: media.createdAt
@@ -62,7 +62,7 @@ const MediaPage = () => {
     if (window.confirm('Are you sure you want to delete this image?')) {
       try {
         // Use the mediaId and imageIndex from the file object
-        const response = await fetch(`${API_URL}/media/${file.mediaId}/image/${file.imageIndex}`, {
+        const response = await fetch(`${API_URL}/api/media/${file.mediaId}/image/${file.imageIndex}`, {
           method: 'DELETE',
         });
 
@@ -90,7 +90,7 @@ const MediaPage = () => {
     });
 
     try {
-      const response = await fetch(`${API_URL}/media`, {
+      const response = await fetch(`${API_URL}/api/media`, {
         method: 'POST',
         body: formData,
       });
