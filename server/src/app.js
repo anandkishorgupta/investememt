@@ -1,12 +1,17 @@
-import express from "express";
 import cors from "cors";
-import routes from "./services/routes.js";
+import express from "express";
 import errorMiddleware from "./middlewares/error.middleware.js";
 import { generalLimiter } from "./middlewares/rateLimit.middleware.js";
+import routes from "./services/routes.js";
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: "https://investememt.onrender.com", // your frontend URL
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"], // include PATCH here
+  credentials: true, // if you need cookies/auth
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(generalLimiter); // applies to all routes
