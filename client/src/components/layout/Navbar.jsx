@@ -215,7 +215,7 @@ const Navbar = () => {
 
             <motion.div
               ref={menuRef}
-              className="fixed top-0 left-0 h-screen w-[320px] bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 backdrop-blur-2xl shadow-2xl z-50 border-r border-amber-700/30 flex flex-col"
+              className=" z-[9999] fixed top-0 left-0 h-screen w-[320px] bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 backdrop-blur-2xl shadow-2xl z-50 border-r border-amber-700/30 flex flex-col"
               variants={drawerVariants}
               initial="closed"
               animate="open"
