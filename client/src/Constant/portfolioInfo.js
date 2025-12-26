@@ -92,7 +92,7 @@ import hydroEmpireImage from "../assets/portfolioImages/hydroEmpire.jpg"
 import mahaShaktiCementImage from "../assets/portfolioImages/mahaShaktiCement.jpg"
 import sparkHydroImage from "../assets/portfolioImages/sparkHydro.jpg"
 // src/constants/portfolioInfo.js
-
+import phuwa from "../assets/logos/puwa.webp"
 
 export const portfolioData = [
   {
@@ -101,7 +101,7 @@ export const portfolioData = [
     category: "Hydropower Project",
     description:
       "Puwa Khola-1 Hydropower is a run-of-river hydroelectric project in Ilam District, Nepal, with an installed capacity of 4 MW. It generates clean energy by harnessing the flow of the Puwa River and contributes electricity to the national grid. The project is developed and operated by Puwa Khola-1 Hydropower Pvt. Ltd. and aims to promote sustainable renewable energy solutions in Nepal.",
-    image: "",
+    image:phuwa,
     tags: ["Hydropower", "Renewable Energy"],
     location: "Ilam District, Nepal",
     clients: "",

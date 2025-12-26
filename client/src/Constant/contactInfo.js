@@ -4,17 +4,17 @@
 export const CONTACT_INFO = {
   address: {
     label: "Office",
-    value: "Kathmandu, Nepal",
-    description: "Central Business District",
+    value: "Radhe Radhe, Kathmandu, Nepal",
+    description: "Visit us during business hours",
   },
   phone: {
     label: "Phone",
-    value: "+977 1-5911351",
+    value: "+977 985-1443514",
     description: "Mon–Fri, 9AM–6PM NPT",
   },
   email: {
     label: "Email",
-    value: "contact@naraprasadsitaula.com",
+    value: "venture.devshree@gmail.com",
     description: "Response within 24 hours",
   },
   mapEmbedUrl:

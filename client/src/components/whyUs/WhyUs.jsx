@@ -1,17 +1,17 @@
 
 import { motion } from "framer-motion";
 import {
-  MdAttachMoney,
-  MdLock,
-  MdSecurity,
-  MdTrendingUp,
+    MdAttachMoney,
+    MdLock,
+    MdSecurity,
+    MdTrendingUp,
 } from "react-icons/md";
 import { useInView } from "react-intersection-observer";
 
 const cards = [
   {
     title: "Safe Investment",
-    desc: "Sarathi Equity Fund provides safe investment options with a focus on consistent returns and risk management.",
+    desc: "Devshree Venture provides safe investment options with a focus on consistent returns and risk management.",
     icon: <MdAttachMoney size={34} className="text-[#D4AF37]" />,
   },
   {

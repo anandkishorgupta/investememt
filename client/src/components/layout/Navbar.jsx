@@ -1,9 +1,8 @@
 import { ADToBS } from "bikram-sambat-js";
 import { AnimatePresence, motion } from "framer-motion";
 
-
 import { useEffect, useRef, useState } from "react";
-import { FiTrendingUp } from "react-icons/fi";
+import devshreeLogo from "../../assets/logos/devshree.jpeg";
 
 import {
   HiMenu,
@@ -136,14 +135,19 @@ const Navbar = () => {
               {/* LOGO */}
               <Link className="flex items-center gap-3" to="/">
                 <div className="relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-amber-500 to-yellow-500 blur opacity-30 rounded-lg" />
+                  {/* <div className="absolute -inset-1 bg-gradient-to-r from-amber-500 to-yellow-500 blur opacity-30 rounded-lg" />
                   <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 p-2 rounded-lg border border-amber-600/30">
                     <FiTrendingUp className="w-7 h-7 text-amber-400" />
-                  </div>
+                  </div> */}
+                    <img 
+                    src={devshreeLogo} 
+                    alt="logo"
+                    className="w-9 h-9 rounded-full"
+                    />
                 </div>
                 <div className="hidden sm:block">
                   <p className="text-sm font-bold bg-gradient-to-r from-amber-300 to-amber-400 bg-clip-text text-transparent">
-                    Sarathi Equity Fund
+                    Devshree Venture pvt. ltd.
                   </p>
                   <p className="text-xs text-amber-200/70">
                     Invest for Growth
@@ -167,7 +171,8 @@ const Navbar = () => {
                 <div className="hidden md:block text-right">
                   <div className="flex items-center gap-2 text-amber-200/90 text-xs">
                     <HiOutlineCalendar className="text-amber-400" />
-                    {currentDate} / {nepaliDate}  {/* Shows Gregorian / Nepali */}
+                    {/* {currentDate} /  */}
+                    {nepaliDate}  {/* Shows Gregorian / Nepali */}
                   </div>
 
                   <div className="flex items-center gap-2 text-amber-200/70 text-xs mt-1">

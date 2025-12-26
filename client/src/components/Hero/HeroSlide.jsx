@@ -15,12 +15,12 @@ const HeroSlide = ({ item }) => {
 
         <h1 className="text-4xl md:text-6xl font-bold leading-tight text-white">
           {item.name}
-          <span className="block text-[#D4AF37] mt-1">
+          {/* <span className="block text-[#D4AF37] mt-1">
             {item.sector}
-          </span>
-          <span className="block text-lg md:text-xl text-gray-400 mt-3 font-medium">
+          </span> */}
+          {/* <span className="block text-lg md:text-xl text-gray-400 mt-3 font-medium">
             {item.company}
-          </span>
+          </span> */}
         </h1>
 
         <p className="text-gray-300 max-w-xl leading-relaxed">

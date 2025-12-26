@@ -90,7 +90,7 @@ import { FiX } from "react-icons/fi";
 const API_URL = import.meta.env.VITE_API_URL;
 
 function NoticeModal({ open, onClose, images }) {
-  if (!open || !images?.length) return null;
+  if (!open ) return null;
 
   return (
     <Dialog open={open} onClose={onClose} className="relative z-50">
