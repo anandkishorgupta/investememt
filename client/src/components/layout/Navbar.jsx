@@ -12,6 +12,8 @@ import {
 } from "react-icons/hi";
 import { Link, NavLink } from "react-router-dom";
 
+const globalContainer="max-w-[1360px] mx-auto px-5 md:px-8 lg:px-8"
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -135,10 +137,7 @@ const Navbar = () => {
               {/* LOGO */}
               <Link className="flex items-center gap-3" to="/">
                 <div className="relative">
-                  {/* <div className="absolute -inset-1 bg-gradient-to-r from-amber-500 to-yellow-500 blur opacity-30 rounded-lg" />
-                  <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 p-2 rounded-lg border border-amber-600/30">
-                    <FiTrendingUp className="w-7 h-7 text-amber-400" />
-                  </div> */}
+
                     <img 
                     src={devshreeLogo} 
                     alt="logo"
@@ -158,16 +157,7 @@ const Navbar = () => {
               {/* RIGHT */}
               <div className="flex items-center gap-4">
                 {/* DATE */}
-                {/* <div className="hidden md:block text-right">
-                  <div className="flex items-center gap-2 text-amber-200/90 text-xs">
-                    <HiOutlineCalendar className="text-amber-400" />
-                    {currentDate}
-                  </div>
-                  <div className="flex items-center gap-2 text-amber-200/70 text-xs mt-1">
-                    <HiOutlineClock className="text-amber-400" />
-                    {currentDay}, {currentTime}
-                  </div>
-                </div> */}
+               
                 <div className="hidden md:block text-right">
                   <div className="flex items-center gap-2 text-amber-200/90 text-xs">
                     <HiOutlineCalendar className="text-amber-400" />

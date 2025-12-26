@@ -1,7 +1,6 @@
 import cors from "cors";
 import express from "express";
 import errorMiddleware from "./middlewares/error.middleware.js";
-import { generalLimiter } from "./middlewares/rateLimit.middleware.js";
 import routes from "./services/routes.js";
 const app = express();
 
@@ -14,7 +13,7 @@ app.use(cors({
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(generalLimiter); // applies to all routes
+// app.use(generalLimiter); // applies to all routes
 
 // Static folder (images)
 app.use("/uploads", express.static("uploads"));
