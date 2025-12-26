@@ -7,7 +7,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: "https://investememt.onrender.com", // your frontend URL
+  origin: ["http://localhost:5173","https://investememt.onrender.com"], // your frontend URL
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"], // include PATCH here
   credentials: true, // if you need cookies/auth
 }));
