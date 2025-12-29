@@ -6,8 +6,8 @@ import BODCard from "./bodCard";
 
 const BOD = () => {
   return (
-    <div className=" py-12 px-4 sm:px-6 lg:px-8">
-       <div className="absolute -top-32 -left-32 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl" />
+    <div className=" py-12 px-4 sm:px-6 lg:px-8 overflow-x-hidden relative">
+      <div className="absolute -top-32 -left-32 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl" />
       <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-100/20 rounded-full blur-3xl" />
 
       {/* Section Header */}
