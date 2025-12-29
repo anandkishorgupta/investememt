@@ -3,4 +3,5 @@
 /* Always reserve space for vertical scrollbar to prevent layout shift */
 html {
   overflow-y: scroll;
+  overflow-x: hidden;
 }

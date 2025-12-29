@@ -48,7 +48,7 @@ import { Navigate, Outlet, Route, BrowserRouter as Router, Routes } from "react-
 import { AuthProvider, useAuth } from "./admin/context/AuthContext";
 import { NotificationProvider } from "./admin/context/NotificationContext";
 
-
+import "./App.css";
 
 /* ---------------- ADMIN ---------------- */
 import Layout from "./admin/components/layout/Layout";
