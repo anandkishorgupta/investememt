@@ -1,5 +1,3 @@
-
-
 import { ADToBS } from "bikram-sambat-js";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -13,6 +11,8 @@ import {
   HiX,
 } from "react-icons/hi";
 import { Link, NavLink } from "react-router-dom";
+
+const globalContainer="max-w-[1360px] mx-auto px-5 md:px-8 lg:px-8"
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,9 +30,10 @@ const Navbar = () => {
     { name: "Portfolio", to: "/portfolio" },
     { name: "Teams", to: "/teams" },
     { name: "Contact", to: "/contact" },
+
   ];
 
-  /* ================= TIME ================= */
+  /* ================= TIME & DAY ================= */
   useEffect(() => {
     const updateDateTime = () => {
       const now = new Date();
@@ -46,34 +47,24 @@ const Navbar = () => {
       );
 
       setCurrentDay(now.toLocaleDateString([], { weekday: "long" }));
+
       setCurrentTime(
         now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
       );
 
-      const isoDate = now.toISOString().split("T")[0];
-      const bsString = ADToBS(isoDate);
+      // Convert AD to BS
+      // bikram-sambat-js expects YYYY-MM-DD
+      const isoDate = now.toISOString().split("T")[0]; // "2025-12-23"
+      const bsString = ADToBS(isoDate); // ex: "2082-08-08"
+      // Format BS string into month name, day, year
       const [bsYear, bsMonthNum, bsDay] = bsString.split("-");
-
       const bsMonthNames = [
-        "Baisakh",
-        "Jestha",
-        "Ashadh",
-        "Shrawan",
-        "Bhadra",
-        "Ashwin",
-        "Kartik",
-        "Mangsir",
-        "Poush",
-        "Magh",
-        "Falgun",
-        "Chaitra",
+        "Baisakh", "Jestha", "Ashadh", "Shrawan", "Bhadra", "Ashwin",
+        "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"
       ];
+      const bsMonth = bsMonthNames[parseInt(bsMonthNum, 10) - 1];
 
-      setNepaliDate(
-        `${bsMonthNames[parseInt(bsMonthNum) - 1]} ${parseInt(
-          bsDay
-        )}, ${bsYear}`
-      );
+      setNepaliDate(`${bsMonth} ${parseInt(bsDay, 10)}, ${bsYear}`);
     };
 
     updateDateTime();
@@ -84,6 +75,7 @@ const Navbar = () => {
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
   const closeMenu = () => setIsMenuOpen(false);
 
+  /* ================= CLOSE ON OUTSIDE CLICK ================= */
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) closeMenu();
@@ -93,6 +85,7 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
   }, [isMenuOpen]);
 
+  /* ================= CURSOR + HOVER ================= */
   useEffect(() => {
     const move = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
@@ -106,6 +99,7 @@ const Navbar = () => {
     }
   }, [isMenuOpen]);
 
+  /* ================= SCROLL ================= */
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
@@ -122,37 +116,44 @@ const Navbar = () => {
       transition: { type: "spring", stiffness: 260, damping: 26 },
     },
   };
-
+  
   return (
     <>
-      {/* NAVBAR */}
-      <div className="fixed top-0 left-0 w-full z-50">
-        {/* Gold shimmer */}
+      {/* ================= NAVBAR ================= */}
+      <div className={`fixed top-0 left-0 w-full z-50 shadow-sm `}>
+        {/* Gold animated line */}
+
         <motion.div
-          className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"
+          className={`globalContainer  absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent`}
           animate={{ scaleX: [0, 1, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         />
 
+
+      <div className="absolute -top-32 -left-32 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl" />
+      <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-100/20 rounded-full blur-3xl" />
+
         <nav
-          className={`bg-[#FAF8F3]/90 backdrop-blur-xl border-b border-[#E6D8A5] transition-all ${
-            isScrolled ? "shadow-lg shadow-[#D4AF37]/10" : ""
-          }`}
+          className={` backdrop-blur-xl border-b border-amber-700/30 transition-all ${isScrolled ? "shadow-2xl shadow-amber-900/20" : ""
+            }`}
         >
           <div className="max-w-7xl mx-auto px-4">
             <div className="flex h-16 items-center justify-between">
               {/* LOGO */}
               <Link className="flex items-center gap-3" to="/">
-                <img
-                  src={devshreeLogo}
-                  alt="logo"
-                  className="w-9 h-9 rounded-full"
-                />
+                <div className="relative">
+
+                    <img 
+                    src={devshreeLogo} 
+                    alt="logo"
+                    className="w-9 h-9 rounded-full"
+                    />
+                </div>
                 <div className="hidden sm:block">
-                  <p className="text-sm font-semibold text-amber-900">
-                    Devshree Venture Pvt. Ltd.
+                  <p className="text-sm font-bold text-amber-900 bg-clip-text">
+                    Devshree Venture pvt. ltd.
                   </p>
-                  <p className="text-xs text-[#8B7A44]">
+                  <p className="text-xs text-amber-800">
                     Invest for Growth
                   </p>
                 </div>
@@ -160,28 +161,37 @@ const Navbar = () => {
 
               {/* RIGHT */}
               <div className="flex items-center gap-4">
+                {/* DATE */}
+               
                 <div className="hidden md:block text-right">
-                  <div className="flex items-center gap-2 text-[#8B7A44] text-xs">
-                    <HiOutlineCalendar />
-                    {nepaliDate}
+                  <div className="flex items-center gap-2 text-amber-800 text-xs">
+                    <HiOutlineCalendar className="text-amber-900" />
+                    {/* {currentDate} /  */}
+                    {nepaliDate}  {/* Shows Gregorian / Nepali */}
                   </div>
-                  <div className="flex items-center gap-2 text-[#8B7A44] text-xs mt-1">
-                    <HiOutlineClock />
+
+                  <div className="flex items-center gap-2 text-amber-800 text-xs mt-1">
+                    <HiOutlineClock className="text-amber-800" />
                     {currentDay}, {currentTime}
                   </div>
                 </div>
 
+
+                {/* MENU BUTTON */}
                 <motion.button
                   onClick={toggleMenu}
-                  className="relative p-2.5 rounded-xl bg-[#FFF9EC] border border-[#E6D8A5]"
+                  className="cursor-pointer relative p-2.5 rounded-xl border border-amber-600/30 group"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {isMenuOpen ? (
-                    <HiX className="w-6 h-6 text-amber-800" />
-                  ) : (
-                    <HiMenu className="w-6 h-6 text-amber-800" />
-                  )}
+                  <div className="absolute -inset-1 bg-gradient-to-r from-amber-500 to-yellow-500 blur opacity-0 group-hover:opacity-60 rounded-xl" />
+                  <div className="relative">
+                    {isMenuOpen ? (
+                      <HiX className="w-6 h-6 text-amber-400" />
+                    ) : (
+                      <HiMenu className="w-6 h-6 text-amber-400" />
+                    )}
+                  </div>
                 </motion.button>
               </div>
             </div>
@@ -191,12 +201,12 @@ const Navbar = () => {
 
       <div className="h-16" />
 
-      {/* DRAWER */}
+      {/* ================= DRAWER ================= */}
       <AnimatePresence>
         {isMenuOpen && (
           <>
             <motion.div
-              className="fixed inset-0 z-40 bg-[#000]/10 backdrop-blur-sm"
+              className="fixed inset-0 z-40 bg-gradient-to-br from-amber-900/10 via-gray-900/60 to-amber-900/10"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -205,32 +215,34 @@ const Navbar = () => {
 
             <motion.div
               ref={menuRef}
-              className="z-[9999] fixed top-0 left-0 h-screen w-[320px] bg-[#FFF9EC] border-r border-[#E6D8A5] shadow-xl"
+              className=" z-[9999] fixed top-0 left-0 h-screen w-[320px] backdrop-blur-2xl shadow-2xl z-50 border-r border-amber-700/30 flex flex-col"
               variants={drawerVariants}
               initial="closed"
               animate="open"
               exit="closed"
             >
+              {/* CLOSE */}
               <div className="flex justify-end p-4">
                 <button
                   onClick={closeMenu}
-                  className="p-2 rounded-lg text-[#3A2F1C] hover:bg-[#EADFB8]"
+                  className="cursor-pointer p-2 rounded-lg text-amber-400 hover:bg-amber-500/10"
                 >
                   <HiX size={24} />
                 </button>
               </div>
 
-              <div className="p-6 space-y-6">
+              {/* LINKS */}
+              <div className="p-6 space-y-6 flex-1">
+
                 {navItems.map((item, idx) => (
                   <NavLink
                     key={idx}
                     to={item.to}
                     onClick={closeMenu}
                     className={({ isActive }) =>
-                      `block text-lg font-medium transition ${
-                        isActive
-                          ? "text-[#B8962E]"
-                          : "text-[#3A2F1C] hover:text-[#B8962E]"
+                      `block text-lg font-medium transition ${isActive
+                        ? "text-amber-400"
+                        : "text-amber-100/80 hover:text-amber-400"
                       }`
                     }
                   >
@@ -242,6 +254,7 @@ const Navbar = () => {
           </>
         )}
       </AnimatePresence>
+
     </>
   );
 };
