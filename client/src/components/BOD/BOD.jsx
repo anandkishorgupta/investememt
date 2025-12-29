@@ -6,7 +6,10 @@ import BODCard from "./bodCard";
 
 const BOD = () => {
   return (
-    <div className="bg-white py-12 px-4 sm:px-6 lg:px-8">
+    <div className=" py-12 px-4 sm:px-6 lg:px-8">
+       <div className="absolute -top-32 -left-32 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl" />
+      <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-100/20 rounded-full blur-3xl" />
+
       {/* Section Header */}
       <div className="max-w-7xl mx-auto mb-12 text-center">
         <div className="inline-flex items-center mb-4">
@@ -16,7 +19,7 @@ const BOD = () => {
           </h2>
           <div className="w-8 h-0.5 bg-yellow-600 ml-3" />
         </div>
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
+        <h1 className="text-2xl sm:text-3xl font-bold text-amber-700">
           Board of Directors
         </h1>
       </div>

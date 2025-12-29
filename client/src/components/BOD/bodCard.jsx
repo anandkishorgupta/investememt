@@ -22,7 +22,7 @@ const BODCard = ({ director }) => {
       </div>
 
       <div className="p-5 text-center">
-        <h3 className="text-xl font-bold text-gray-900">
+        <h3 className="text-xl font-bold text-amber-700">
           {director.name}
         </h3>
         <p className="text-yellow-600 font-medium mt-1">
@@ -35,7 +35,7 @@ const BODCard = ({ director }) => {
               href={director.socials.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-700 hover:text-blue-600 transition-colors"
+              className="text-amber-900 hover:text-blue-600 transition-colors"
             >
               <FaFacebookF />
             </a>

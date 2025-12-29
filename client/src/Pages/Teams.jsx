@@ -21,7 +21,10 @@ const Teams = () => {
   };
 
   return (
-    <section className="relative bg-white text-gray-800 min-h-screen py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative  text-gray-800 min-h-screen py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+       <div className="absolute -top-32 -left-32 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl" />
+      <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-100/20 rounded-full blur-3xl" />
+
       {/* GOLD RADIAL GLOW */}
       <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(212,175,55,0.08),transparent_70%)] pointer-events-none" />
       <motion.div
@@ -53,7 +56,7 @@ const Teams = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-amber-900"
         >
           Board of Directors
         </motion.h1>
@@ -62,7 +65,7 @@ const Teams = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="mt-4 text-gray-600 max-w-3xl mx-auto text-sm md:text-base"
+          className="mt-4 text-amber-800 max-w-3xl mx-auto text-sm md:text-base"
         >
           Our board members are highly experienced professionals dedicated to
           driving growth, innovation, and lasting value for our investors and
@@ -92,13 +95,13 @@ const Teams = () => {
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                <p className="text-gray-900 text-sm text-center">
+                <p className="text-white text-sm text-center">
                   {member.description}
                 </p>
               </div>
             </div>
             <div className="p-5 text-center">
-              <h3 className="text-xl font-semibold text-[#D4AF37]">
+              <h3 className="text-xl font-semibold text-amber-800">
                 {member.name}
               </h3>
               <p className="text-yellow-600 font-medium mt-1">{member.title}</p>
@@ -110,7 +113,7 @@ const Teams = () => {
                     href={member.socials.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-500 hover:text-blue-500 transition-colors"
+                    className="text-amber-900 hover:text-blue-500 transition-colors"
                   >
                     <FaFacebookF />
                   </a>
