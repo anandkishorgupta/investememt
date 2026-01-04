@@ -7,7 +7,7 @@ export const BOD_INFO = [
     image: bodNaraPrasad,
     // "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     description:
-      "With over 22 years of experience in finance and investment management, Krishna leads our strategic direction with visionary leadership.",
+      "Nara Prasad Sitaula, age 46, is a business leader from Taplejung with a BBA and over 20 years of experience in management, energy, and cooperative sectors. He holds key leadership roles in multiple companies and is actively involved in community service.",
     socials: {
       facebook: "https://www.facebook.com/Npsitaula/",
       // instagram: "https://instagram.com/krishna.neupane",
