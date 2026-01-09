@@ -21,7 +21,7 @@ const OurTeam = () => {
       </div>
 
       {/* Flexbox Cards */}
-      <div className="flex flex-wrap justify-start gap-6 max-w-7xl mx-auto">
+      <div className="flex flex-wrap lg:justify-start justify-center gap-6 max-w-7xl mx-auto">
         {OUR_TEAM.map((member, index) => (
           <div
             key={index}
