@@ -6,6 +6,7 @@ import BOD from "../components/BOD/BOD";
 import Hero from "../components/Hero/Hero";
 import HowWeDo from "../components/HowWeDo/HowWeDo";
 import NoticeModal from "../components/Modal/NoticeModal";
+import OurTeam from "../components/OurTeams";
 import WhatWeDo from "../components/WhatWeDo/WhatWeDo";
 import OurServices from "../components/ourServices/OurServices";
 import WhyUs from "../components/whyUs/WhyUs";
@@ -46,9 +47,8 @@ const Home = () => {
       />
 
       <div
-        className={`transition duration-300 ${
-          open ? "blur-md pointer-events-none select-none" : ""
-        }`}
+        className={`transition duration-300 ${open ? "blur-md pointer-events-none select-none" : ""
+          }`}
       >
         <Hero />
         <WhyUs />
@@ -56,6 +56,8 @@ const Home = () => {
         <OurServices />
         <HowWeDo />
         <BOD />
+        {/* out teams */}
+        <OurTeam />
       </div>
     </div>
   );

@@ -426,12 +426,13 @@ const Contact = () => {
           </motion.p>
         </motion.div>
 
+      
         {/* Contact Cards */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-16"
         >
           {[address, phone, email].map((item, i) => (
             <motion.div
@@ -443,9 +444,10 @@ const Contact = () => {
               whileHover={{ y: -8 }}
               className="group relative bg-amber-50 rounded-2xl p-6 shadow-md hover:shadow-lg border border-[#D4AF37]/40 transition-all"
             >
-              <div className="flex items-start">
+              <div className="flex items-start gap-4 flex-wrap sm:flex-nowrap">
+                {/* Icon */}
                 <div
-                  className="p-3 rounded-xl mr-4 flex-shrink-0"
+                  className="p-3 rounded-xl flex-shrink-0"
                   style={{ background: goldGradient }}
                 >
                   <span className="text-amber-900">
@@ -458,14 +460,18 @@ const Contact = () => {
                     )}
                   </span>
                 </div>
-                <div>
+
+                {/* Text */}
+                <div className="flex-1 min-w-0">
                   <h3 className="text-sm font-semibold uppercase tracking-wide text-amber-900">
                     {item.label}
                   </h3>
-                  <p className="text-lg font-medium mt-1 text-amber-900">
+                  <p className="text-lg font-medium mt-1 text-amber-900 break-words">
                     {item.value}
                   </p>
-                  <p className="text-amber-600 text-sm mt-1">{item.description}</p>
+                  <p className="text-amber-600 text-sm mt-1 break-words">
+                    {item.description}
+                  </p>
                 </div>
               </div>
             </motion.div>

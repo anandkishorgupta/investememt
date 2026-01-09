@@ -6,9 +6,9 @@ const BODCard = ({ director }) => {
     <motion.div
       variants={itemVariants}
       whileHover={{ y: -8, transition: { duration: 0.2 } }}
-      className="bg-white rounded-xl overflow-hidden shadow-lg border border-yellow-50/20 transition-all duration-300"
+      className="bg-white w-[250px] rounded-xl overflow-hidden shadow-lg border border-yellow-50/20 transition-all duration-300"
     >
-      <div className="relative h-64 overflow-hidden">
+      <div className="relative h-64  overflow-hidden">
         <img
           src={director.image}
           alt={director.name}
