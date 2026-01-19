@@ -18,6 +18,7 @@ const OurTeam = () => {
         <h1 className="text-2xl sm:text-3xl font-bold text-amber-700">
           Meet the Team
         </h1>
+        
       </div>
 
       {/* Flexbox Cards */}

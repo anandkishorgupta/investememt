@@ -12,7 +12,7 @@ import {
 } from "react-icons/hi";
 import { Link, NavLink } from "react-router-dom";
 
-const globalContainer="max-w-[1360px] mx-auto px-5 md:px-8 lg:px-8"
+// const globalContainer="max-w-[1360px] mx-auto px-5 md:px-8 lg:px-8"
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -116,44 +116,44 @@ const Navbar = () => {
       transition: { type: "spring", stiffness: 260, damping: 26 },
     },
   };
-  
+
   return (
     <>
       {/* ================= NAVBAR ================= */}
-      <div className={`fixed top-0 left-0 w-full z-50 shadow-sm `}>
+      <div className={`fixed top-0 left-0 w-full z-50 shadow-sm`}>
         {/* Gold animated line */}
 
         <motion.div
-          className={`globalContainer  absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent`}
+          className={`  absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent`}
           animate={{ scaleX: [0, 1, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         />
 
 
-      <div className="absolute -top-32 -left-32 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl" />
-      <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-100/20 rounded-full blur-3xl" />
+        <div className="absolute -top-32 -left-32 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl" />
+        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-100/20 rounded-full blur-3xl" />
 
         <nav
           className={` backdrop-blur-xl border-b border-amber-700/30 transition-all ${isScrolled ? "shadow-2xl shadow-amber-900/20" : ""
             }`}
         >
           <div className="max-w-7xl mx-auto px-4">
-            <div className="flex h-16 items-center justify-between">
+            <div className="flex h-22 items-center justify-between">
               {/* LOGO */}
               <Link className="flex items-center gap-3" to="/">
                 <div className="relative">
 
-                    <img 
-                    src={devshreeLogo} 
+                  <img
+                    src={devshreeLogo}
                     alt="logo"
-                    className="w-9 h-9 rounded-full"
-                    />
+                    className="w-9 h-9 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full"
+                  />
                 </div>
                 <div className="hidden sm:block">
-                  <p className="text-sm font-bold text-amber-900 bg-clip-text">
+                  <p className=" text-base md:text-lg lg:text-xl font-bold text-amber-900 bg-clip-text">
                     Devshree Venture pvt. ltd.
                   </p>
-                  <p className="text-xs text-amber-800">
+                  <p className="text-xs md:text-sm lg:text-base text-amber-800">
                     Invest for Growth
                   </p>
                 </div>
@@ -162,15 +162,15 @@ const Navbar = () => {
               {/* RIGHT */}
               <div className="flex items-center gap-4">
                 {/* DATE */}
-               
+
                 <div className="hidden md:block text-right">
-                  <div className="flex items-center gap-2 text-amber-800 text-xs">
+                  <div className="flex items-center gap-2 text-amber-800 text-sm">
                     <HiOutlineCalendar className="text-amber-900" />
                     {/* {currentDate} /  */}
                     {nepaliDate}  {/* Shows Gregorian / Nepali */}
                   </div>
 
-                  <div className="flex items-center gap-2 text-amber-800 text-xs mt-1">
+                  <div className="flex items-center gap-2 text-amber-800 text-sm mt-1">
                     <HiOutlineClock className="text-amber-800" />
                     {currentDay}, {currentTime}
                   </div>
@@ -199,10 +199,11 @@ const Navbar = () => {
         </nav>
       </div>
 
-      <div className="h-16" />
+      <div className="h-22" />
 
       {/* ================= DRAWER ================= */}
-      <AnimatePresence>
+      <AnimatePresence
+      >
         {isMenuOpen && (
           <>
             <motion.div
