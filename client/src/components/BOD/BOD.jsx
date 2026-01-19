@@ -61,7 +61,7 @@ const BOD = () => {
               </p>
 
               {/* Social Icons */}
-              <div className="flex justify-center space-x-4 mt-3">
+              {/* <div className="flex justify-center space-x-4 mt-3">
                 {director.socials?.facebook && (
                   <a
                     href={director.socials.facebook}
@@ -92,7 +92,58 @@ const BOD = () => {
                     <FaLinkedinIn />
                   </a>
                 )}
+              </div> */}
+              {/* Social Icons + Portfolio */}
+              <div className="flex flex-col items-center mt-4 space-y-2">
+                {/* Socials */}
+                <div className="flex space-x-4 text-gray-500 hover:text-amber-600 transition-colors">
+                  {director.socials?.facebook && (
+                    <a
+                      href={director.socials.facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-blue-600"
+                    >
+                      <FaFacebookF size={18} />
+                    </a>
+                  )}
+                  {director.socials?.instagram && (
+                    <a
+                      href={director.socials.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-pink-500"
+                    >
+                      <FaInstagram size={18} />
+                    </a>
+                  )}
+                  {director.socials?.linkedin && (
+                    <a
+                      href={director.socials.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-blue-700"
+                    >
+                      <FaLinkedinIn size={18} />
+                    </a>
+                  )}
+                </div>
+
+                {/* Portfolio */}
+                {director.portfolio && (
+                  <a
+                    href={director.portfolio}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-1.5 rounded-full border border-amber-500
+                 text-amber-500 text-sm font-semibold
+                 hover:bg-amber-50 hover:shadow-md transition"
+                  >
+                    View Portfolio
+                  </a>
+                )}
               </div>
+
             </div>
           </div>
         ))}

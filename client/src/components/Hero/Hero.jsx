@@ -1,4 +1,4 @@
-import { FaChevronLeft } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -29,7 +29,7 @@ const Hero = () => {
          shadow-[0_0_25px_rgba(212,175,55,0.7)]
          hover:shadow-[0_0_40px_rgba(212,175,55,1)]
          transition">
-          <FaChevronLeft className="text-2xl" />
+          <FaChevronRight className="text-2xl" />
 
         </button>
         <Swiper {...swiperConfig} className="min-h-[75vh]">
