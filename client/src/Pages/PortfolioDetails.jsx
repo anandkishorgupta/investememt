@@ -117,12 +117,7 @@ const PortfolioDetails = () => {
             <div className="flex items-center gap-3 text-neutral-700">
               <FiMapPin className="text-amber-600" /> {company.location}
             </div>
-            {/* <div className="flex items-center gap-3 text-neutral-700">
-              <FiUsers className="text-amber-600" /> {company.clients}
-            </div>
-            <div className="flex items-center gap-3 text-neutral-700">
-              <FiAward className="text-amber-600" /> {company.investment}
-            </div> */}
+          
           </motion.div>
         </motion.div>
       </section>

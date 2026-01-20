@@ -138,7 +138,7 @@ const Navbar = () => {
             }`}
         >
           <div className="max-w-7xl mx-auto px-4">
-            <div className="flex h-22 items-center justify-between">
+            <div className="flex h-18 items-center justify-between">
               {/* LOGO */}
               <Link className="flex items-center gap-3" to="/">
                 <div className="relative">
@@ -146,14 +146,14 @@ const Navbar = () => {
                   <img
                     src={devshreeLogo}
                     alt="logo"
-                    className="w-9 h-9 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full"
+                    className="w-9 h-9 md:w-12 md:h-12 lg:w-16 lg:h-16 rounded-full"
                   />
                 </div>
                 <div className="hidden sm:block">
-                  <p className=" text-base md:text-lg lg:text-xl font-bold text-amber-900 bg-clip-text">
+                  <p className=" text-base md:text-lg lg:text-2xl font-bold text-amber-900 bg-clip-text">
                     Devshree Venture pvt. ltd.
                   </p>
-                  <p className="text-xs md:text-sm lg:text-base text-amber-800">
+                  <p className="text-xs md:text-sm lg:text-xl text-amber-800">
                     Invest for Growth
                   </p>
                 </div>
@@ -164,15 +164,21 @@ const Navbar = () => {
                 {/* DATE */}
 
                 <div className="hidden md:block text-right">
-                  <div className="flex items-center gap-2 text-amber-800 text-sm">
+                  <div className="flex items-center gap-2 text-amber-800 text-sm ">
                     <HiOutlineCalendar className="text-amber-900" />
                     {/* {currentDate} /  */}
-                    {nepaliDate}  {/* Shows Gregorian / Nepali */}
+                    <span className="text-lg">
+
+                      {nepaliDate}  {/* Shows Gregorian / Nepali */}
+                    </span>
                   </div>
 
                   <div className="flex items-center gap-2 text-amber-800 text-sm mt-1">
-                    <HiOutlineClock className="text-amber-800" />
-                    {currentDay}, {currentTime}
+                    <HiOutlineClock className="text-amber-800 " />
+                    <span className="text-lg">
+                      {currentDay}, {currentTime}
+
+                    </span>
                   </div>
                 </div>
 
@@ -199,7 +205,7 @@ const Navbar = () => {
         </nav>
       </div>
 
-      <div className="h-22" />
+      <div className="h-18" />
 
       {/* ================= DRAWER ================= */}
       <AnimatePresence
