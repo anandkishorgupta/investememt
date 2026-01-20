@@ -69,7 +69,7 @@ const CONTACT_INFO = [
 ];
 const STATS = [
   { value: "15+", label: "Portfolio Companies" },
-  { value: "1", label: "Years Experience" },
+  { value: "1", label: "Year  Experience" },
   { value: "3", label: "Sectors" },
   { value: "100%", label: "Commitment" },
 ];

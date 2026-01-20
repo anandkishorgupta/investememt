@@ -21,11 +21,9 @@ const PortfolioDetails = () => {
   };
 
   return (
-    <div className="bg-neutral-50 min-h-screen text-neutral-900">
+    <div className="bg-neutral-50 min-h-screen text-neutral-900 ">
       {/* Back Button */}
-       <div className="absolute -top-32 -left-32 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl" />
-      <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-100/20 rounded-full blur-3xl" />
-
+      
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -63,14 +61,14 @@ const PortfolioDetails = () => {
           transition={{ duration: 1 }}
           className="space-y-6"
         >
-          <motion.span
+          {/* <motion.span
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
             className="inline-block mb-2 px-4 py-1 rounded-full bg-amber-100 text-amber-700 text-sm font-medium"
           >
             {company.category}
-          </motion.span>
+          </motion.span> */}
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -91,7 +89,7 @@ const PortfolioDetails = () => {
           </motion.p>
 
           {/* Tags */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -105,7 +103,7 @@ const PortfolioDetails = () => {
                 {tag}
               </span>
             ))}
-          </motion.div>
+          </motion.div> */}
 
           {/* Key Metrics */}
           <motion.div

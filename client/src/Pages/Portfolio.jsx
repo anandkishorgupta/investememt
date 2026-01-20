@@ -113,10 +113,10 @@ const Portfolio = () => {
                     whileHover={{ scale: 1.08 }}
                     transition={{ duration: 0.4 }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-black/10 to-transparent" />
+                  {/* <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-black/10 to-transparent" />
                   <span className="absolute top-4 left-4 text-xs px-3 py-1 rounded-full bg-amber-100 text-amber-700 backdrop-blur">
                     {item.category}
-                  </span>
+                  </span> */}
                 </div>
 
                 {/* Info */}
@@ -128,7 +128,7 @@ const Portfolio = () => {
                     {truncateText(item.description, 100)}
                   </p>
 
-                  <div className="mt-4 flex flex-wrap gap-2">
+                  {/* <div className="mt-4 flex flex-wrap gap-2">
                     {item.tags.map((tag) => (
                       <span
                         key={tag}
@@ -137,7 +137,7 @@ const Portfolio = () => {
                         {tag}
                       </span>
                     ))}
-                  </div>
+                  </div> */}
 
                   <div className="mt-5 space-y-2">
                     {renderMetaItem(FiMapPin, item.location)}

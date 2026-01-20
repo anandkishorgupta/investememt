@@ -23,7 +23,7 @@ const HeroSlide = ({ item }) => {
           {item.name}
         </h1>
 
-        <p className="text-sm md:text-base text-gray-300 max-w-lg leading-relaxed">
+        <p className="text-sm md:text-base sm:text-black lg:text-gray-300  md:text-gray-300 max-w-lg leading-relaxed">
           {item.description}
         </p>
 
@@ -33,7 +33,7 @@ const HeroSlide = ({ item }) => {
           bg-gradient-to-r from-[#D4AF37] to-[#B8962E]
           text-sm text-black font-semibold
           shadow-[0_8px_30px_rgba(212,175,55,0.35)]
-          hover:scale-105 transition"
+          hover:scale-105 transition cursor-pointer"
         >
           Invest
         </button>

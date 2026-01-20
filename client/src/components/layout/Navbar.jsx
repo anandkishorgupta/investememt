@@ -27,6 +27,7 @@ const Navbar = () => {
   const navItems = [
     { name: "Home", to: "/" },
     { name: "About Us", to: "/about" },
+    { name: "Invest with us", to: '/invest' },
     { name: "Portfolio", to: "/portfolio" },
     { name: "Teams", to: "/teams" },
     { name: "Contact", to: "/contact" },
@@ -130,15 +131,15 @@ const Navbar = () => {
         />
 
 
-        <div className="absolute -top-32 -left-32 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl" />
-        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-100/20 rounded-full blur-3xl" />
+        {/* <div className="absolute -top-32 -left-32 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl" />
+        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-100/20 rounded-full blur-3xl" /> */}
 
         <nav
           className={` backdrop-blur-xl border-b border-amber-700/30 transition-all ${isScrolled ? "shadow-2xl shadow-amber-900/20" : ""
             }`}
         >
           <div className="max-w-7xl mx-auto px-4">
-            <div className="flex h-18 items-center justify-between">
+            <div className="flex h-21 items-center justify-between">
               {/* LOGO */}
               <Link className="flex items-center gap-3" to="/">
                 <div className="relative">
@@ -146,7 +147,7 @@ const Navbar = () => {
                   <img
                     src={devshreeLogo}
                     alt="logo"
-                    className="w-9 h-9 md:w-12 md:h-12 lg:w-16 lg:h-16 rounded-full"
+                    className="w-9 h-9 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full"
                   />
                 </div>
                 <div className="hidden sm:block">
@@ -168,21 +169,16 @@ const Navbar = () => {
                     <HiOutlineCalendar className="text-amber-900" />
                     {/* {currentDate} /  */}
                     <span className="text-lg">
-
                       {nepaliDate}  {/* Shows Gregorian / Nepali */}
                     </span>
                   </div>
-
                   <div className="flex items-center gap-2 text-amber-800 text-sm mt-1">
                     <HiOutlineClock className="text-amber-800 " />
                     <span className="text-lg">
                       {currentDay}, {currentTime}
-
                     </span>
                   </div>
                 </div>
-
-
                 {/* MENU BUTTON */}
                 <motion.button
                   onClick={toggleMenu}
@@ -205,7 +201,7 @@ const Navbar = () => {
         </nav>
       </div>
 
-      <div className="h-18" />
+      <div className="h-21" />
 
       {/* ================= DRAWER ================= */}
       <AnimatePresence

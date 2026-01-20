@@ -6,6 +6,7 @@ import BOD from "../components/BOD/BOD";
 import Hero from "../components/Hero/Hero";
 import HowWeDo from "../components/HowWeDo/HowWeDo";
 import NoticeModal from "../components/Modal/NoticeModal";
+import OurPartners from "../components/OurPartners/OurPartners";
 import OurTeam from "../components/OurTeams";
 import WhatWeDo from "../components/WhatWeDo/WhatWeDo";
 import OurServices from "../components/ourServices/OurServices";
@@ -51,6 +52,7 @@ const Home = () => {
           }`}
       >
         <Hero />
+        <OurPartners/>
         <WhyUs />
         <WhatWeDo />
         <OurServices />
