@@ -27,6 +27,7 @@ import PortfolioDetails from "./Pages/PortfolioDetails";
 import Teams from "./Pages/Teams";
 
 /* ---------------- UTILS ---------------- */
+import Invest from "./Pages/Invest";
 import BackToTop from "./utils/BackToTop";
 import GlobalCursor from "./utils/CursorGlow";
 import ScrollToTop from "./utils/ScrollToTop";
@@ -94,6 +95,7 @@ const App = () => {
             <Route path="/about" element={<AboutUs />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/invest" element={<Invest />} />
             <Route path="/portfolio/:id" element={<PortfolioDetails />} />
             <Route path="/teams" element={<Teams />} />
           </Route>
