@@ -256,6 +256,8 @@
 }
 
 /* Responsive adjustments */
+
+
 @media (max-width: 480px) {
   .modalContainer {
     max-width: 95%;
