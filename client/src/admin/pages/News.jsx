@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../components/common/Button';
 import Table from '../components/common/Table';
+const API_URL = import.meta.env.VITE_API_URL ;
 import IsolatedModal, { 
   FormGroup, 
   Label, 

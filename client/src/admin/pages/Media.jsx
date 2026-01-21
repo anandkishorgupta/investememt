@@ -2,6 +2,7 @@ import { MoreVertical } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import Button from '../components/common/Button';
 import Modal from '../components/common/Modal';
+const API_URL = import.meta.env.VITE_API_URL ;
 
 const MediaPage = () => {
   const [mediaFiles, setMediaFiles] = useState([]);
@@ -16,7 +17,7 @@ const MediaPage = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('adminToken');
-      const response = await fetch('https://backend-website-7ynm.onrender.com/api/media', {
+      const response = await fetch(`${API_URL}/api/media`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -29,7 +30,7 @@ const MediaPage = () => {
           mediaId: media._id,
           imageIndex: index,
           name: url.split('/').pop(),
-          url: url.startsWith('http') ? url : `https://backend-website-7ynm.onrender.com${url}`,
+          url: url.startsWith('http') ? url : `${API_URL}${url}`,
           uploadDate: new Date(media.createdAt).toLocaleDateString(),
           createdAt: media.createdAt
         }))
@@ -65,7 +66,7 @@ const MediaPage = () => {
       try {
         const token = localStorage.getItem('adminToken');
         // Use the mediaId and imageIndex from the file object
-        const response = await fetch(`https://backend-website-7ynm.onrender.com/api/media/${file.mediaId}/image/${file.imageIndex}`, {
+        const response = await fetch(`${API_URL}/api/media/${file.mediaId}/image/${file.imageIndex}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -95,7 +96,7 @@ const MediaPage = () => {
     // First, get existing media documents
     let mediaDocument = null;
     try {
-      const mediaResponse = await fetch('https://backend-website-7ynm.onrender.com/api/media', {
+      const mediaResponse = await fetch(`${API_URL}/api/media`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -123,7 +124,7 @@ const MediaPage = () => {
       }
       
       try {
-        const createResponse = await fetch('https://backend-website-7ynm.onrender.com/api/media', {
+        const createResponse = await fetch(`${API_URL}/api/media`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -157,7 +158,7 @@ const MediaPage = () => {
       formData.append('image', file);
 
       try {
-        const response = await fetch(`https://backend-website-7ynm.onrender.com/api/media/${mediaDocument._id}/image`, {
+        const response = await fetch(`${API_URL}/api/media/${mediaDocument._id}/image`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`

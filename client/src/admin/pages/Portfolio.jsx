@@ -3,6 +3,7 @@ import { MoreVertical } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Button from '../components/common/Button';
 import Card from '../components/common/Card';
+const API_URL = import.meta.env.VITE_API_URL ;
 import IsolatedModal, {
   Button as BWButton,
   Input as BWInput,
@@ -14,7 +15,7 @@ import IsolatedModal, {
   PdfInput,
 } from '../components/common/IsolatedModal';
 
-const API_BASE = 'https://backend-website-7ynm.onrender.com/api/portfolio';
+const API_BASE = `${API_URL}/api/portfolio`;
 const PAGE_LIMIT = 10;
 
 const PortfolioReleasePage = () => {
@@ -72,12 +73,12 @@ const PortfolioReleasePage = () => {
         title: item.title,
         description: item.description || '',
         imageUrls: item.images.map((url) =>
-          url.startsWith('http') ? url : `https://backend-website-7ynm.onrender.com${url}`
+          url.startsWith('http') ? url : `${API_URL}${url}`
         ),
         images: item.images,
         pdfUrls: item.Pdf
           ? item.Pdf.map((pdf) =>
-            pdf.startsWith('http') ? pdf : `https://backend-website-7ynm.onrender.com${pdf}`
+            pdf.startsWith('http') ? pdf : `${API_URL}${pdf}`
           )
           : [],
         invest: !!item.invest,

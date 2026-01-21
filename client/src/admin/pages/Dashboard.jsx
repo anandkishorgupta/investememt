@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../components/common/Card';
 import { useAuth } from '../context/AuthContext';
+const API_URL = import.meta.env.VITE_API_URL ;
 
 const DashboardPage = () => {
   const [stats, setStats] = useState([
@@ -63,18 +64,18 @@ const DashboardPage = () => {
       
       // Fetch counts from all APIs
       const [mediaRes, portfolioRes,  contactRes] = await Promise.all([
-        fetch('https://backend-website-7ynm.onrender.com/api/media', {
+        fetch(`${API_URL}/api/media`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
         }),
-        fetch('https://backend-website-7ynm.onrender.com/api/portfolio', {
+        fetch(`${API_URL}/api/portfolio`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
         }),
         
-        fetch('https://backend-website-7ynm.onrender.com/api/contact', {
+        fetch(`${API_URL}/api/contact`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
