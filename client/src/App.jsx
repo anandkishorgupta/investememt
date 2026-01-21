@@ -14,7 +14,7 @@ import ContactPage from "./admin/pages/Contact";
 import DashboardPage from "./admin/pages/Dashboard";
 import MediaPage from "./admin/pages/Media";
 import NewsPage from "./admin/pages/News";
-import PressReleasePage from "./admin/pages/Press";
+import PressReleasePage from "./admin/pages/Portfolio";
 
 /* ---------------- PUBLIC ---------------- */
 import Footer from "./components/layout/Footer";
@@ -110,7 +110,7 @@ const App = () => {
             <Route element={<AdminLayout />}>
               <Route path="/admin" element={<DashboardPage />} />
               <Route path="/admin/media" element={<MediaPage />} />
-              <Route path="/admin/press" element={<PressReleasePage />} />
+              <Route path="/admin/portfolio" element={<PressReleasePage />} />
               <Route path="/admin/news" element={<NewsPage />} />
               <Route path="/admin/contact" element={<ContactPage />} />
             </Route>

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../components/common/Card';
 import { useAuth } from '../context/AuthContext';
-const API_URL = import.meta.env.VITE_API_URL ;
+
 const DashboardPage = () => {
   const [stats, setStats] = useState([
     {
@@ -17,7 +17,7 @@ const DashboardPage = () => {
       link: '/media'
     },
     {
-      title: 'Press Releases',
+      title: 'Portfolios',
       value: '0',
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -25,19 +25,9 @@ const DashboardPage = () => {
         </svg>
       ),
       color: 'from-purple-500 to-purple-600',
-      link: '/press'
+      link: '/portfolio'
     },
-    {
-      title: 'News Articles',
-      value: '0',
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-        </svg>
-      ),
-      color: 'from-green-500 to-green-600',
-      link: '/news'
-    },
+    
     {
       title: 'Contact Messages',
       value: '0',
@@ -72,40 +62,36 @@ const DashboardPage = () => {
       }
       
       // Fetch counts from all APIs
-      const [mediaRes, pressRes, newsRes, contactRes] = await Promise.all([
-        fetch(`${API_URL}/api/media`, {
+      const [mediaRes, portfolioRes,  contactRes] = await Promise.all([
+        fetch('https://backend-website-7ynm.onrender.com/api/media', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
         }),
-        fetch(`${API_URL}/api/press`, {
+        fetch('https://backend-website-7ynm.onrender.com/api/portfolio', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
         }),
-        fetch(`${API_URL}/api/news`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        }),
-        fetch(`${API_URL}/api/contact`, {
+        
+        fetch('https://backend-website-7ynm.onrender.com/api/contact', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
         })
       ]);
       
-      const [mediaResult, pressResult, newsResult, contactResult] = await Promise.all([
+      const [mediaResult, portfolioResult,  contactResult] = await Promise.all([
         mediaRes.json(),
-        pressRes.json(),
-        newsRes.json(),
+        portfolioRes.json(),
+        
         contactRes.json()
       ]);
       
       // Handle pagination response format
       const mediaData = Array.isArray(mediaResult) ? mediaResult : mediaResult.media || [];
-      const pressData = Array.isArray(pressResult) ? pressResult : pressResult.press || [];
-      const newsData = Array.isArray(newsResult) ? newsResult : newsResult.news || [];
+      const portfolioData = Array.isArray(portfolioResult) ? portfolioResult : portfolioResult.portfolio || [];
+    
       const contactData = Array.isArray(contactResult) ? contactResult : contactResult.messages || [];
       
       // Calculate media file count (sum of all images in all media documents)
@@ -114,9 +100,8 @@ const DashboardPage = () => {
       // Update stats
       const updatedStats = [
         { ...stats[0], value: mediaCount.toString() },
-        { ...stats[1], value: pressData.length.toString() },
-        { ...stats[2], value: newsData.length.toString() },
-        { ...stats[3], value: contactData.length.toString() }
+        { ...stats[1], value: portfolioData.length.toString() },
+        { ...stats[2], value: contactData.length.toString() }
       ];
       
       setStats(updatedStats);
@@ -136,29 +121,19 @@ const DashboardPage = () => {
         }
       }
       
-      // Get latest press
-      if (pressData.length > 0) {
-        const latestPress = pressData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
-        if (latestPress) {
+      // Get latest portfolio
+      if (portfolioData.length > 0) {
+        const latestportfolio = portfolioData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
+        if (latestportfolio) {
           activities.push({
-            action: 'Press release published',
-            time: formatTimeAgo(latestPress.createdAt),
-            type: 'press'
+            action: 'Portfolio published',
+            time: formatTimeAgo(latestportfolio.createdAt),
+            type: 'portfolio'
           });
         }
       }
       
-      // Get latest news
-      if (newsData.length > 0) {
-        const latestNews = newsData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
-        if (latestNews) {
-          activities.push({
-            action: 'News article added',
-            time: formatTimeAgo(latestNews.createdAt),
-            type: 'news'
-          });
-        }
-      }
+      
       
       // Get latest contact
       if (contactData.length > 0) {
@@ -181,7 +156,7 @@ const DashboardPage = () => {
       
       // Limit to 4 most recent activities
       const recentActivities = activities.slice(0, 4);
-      
+    
       if (recentActivities.length > 0) {
         setRecentActivity(recentActivities);
       } else {
@@ -317,22 +292,15 @@ const DashboardPage = () => {
                 Upload Media
               </button>
             </Link>
-            <Link to="/press" className="block">
+            <Link to="/portfolio" className="block">
               <button className="w-full text-left px-4 py-3 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg transition-colors flex items-center">
                 <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                 </svg>
-                Add Press Release
+                Add Portfolios
               </button>
             </Link>
-            <Link to="/news" className="block">
-              <button className="w-full text-left px-4 py-3 bg-green-50 hover:bg-green-100 text-green-700 rounded-lg transition-colors flex items-center">
-                <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                </svg>
-                Add News Article
-              </button>
-            </Link>
+            
             <Link to="/contact" className="block">
               <button className="w-full text-left px-4 py-3 bg-orange-50 hover:bg-orange-100 text-orange-700 rounded-lg transition-colors flex items-center">
                 <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

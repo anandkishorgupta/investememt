@@ -1,22 +1,179 @@
- @import "tailwindcss"; 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+@import "tailwindcss";
 
-/* .globalContainer {
-  @apply max-w-[100px] mx-auto px-5 md:px-8 lg:px-8;
-} */ */
+body {
+  font-family: 'Inter', sans-serif;
+}
 
-/* global.css */
+/* Card Styles */
+.dashboard-card {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s;
+}
 
-/* Import base styles */
+.dashboard-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
 
-/* Import utilities */
-/* @import "tailwindcss/utilities"; */
+/* Image Grid */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+}
 
-/* Your custom reusable class */
-/* .globalContainer {
-  @apply max-w-[1360px] mx-auto px-5 md:px-8 lg:px-8;
-} */
+@media (min-width: 640px) {
+  .image-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 
-html{
-  scroll-behavior: smooth;
+@media (min-width: 768px) {
+  .image-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .image-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Image Card */
+.image-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.3s;
+}
+
+.image-card:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.image-card img {
+  width: 100%;
+  height: 16rem;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.image-card:hover img {
+  transform: scale(1.1);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+
+.image-card:hover .image-overlay {
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 1;
+}
+
+/* Press Card */
+.press-card {
+  transition: all 0.3s;
+}
+
+.press-card:hover {
+  transform: scale(1.02);
+}
+
+/* Form Input */
+.form-input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: #3b82f6;
+  border-color: transparent;
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  resize: none;
+}
+
+.form-textarea:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: #3b82f6;
+  border-color: transparent;
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+/* Hide scrollbar for contact page specifically */
+.contact-page-container {
+  overflow: visible !important;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: transparent;
 }

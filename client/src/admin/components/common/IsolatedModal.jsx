@@ -1,4 +1,4 @@
-import React from 'react';
+
 import styles from './IsolatedModal.module.css';
 
 /**
@@ -64,9 +64,10 @@ const IsolatedModal = ({
   );
 };
 
-/**
- * Form Components for use within IsolatedModal
- */
+/* ───────────────────────────────────────────────
+   Form Components 
+─────────────────────────────────────────────── */
+
 export const FormGroup = ({ children }) => (
   <div className={styles.formGroup}>{children}</div>
 );
@@ -90,9 +91,54 @@ export const FileInput = ({ accept = 'image/*', ...props }) => (
   <input type="file" accept={accept} className={styles.fileInput} {...props} />
 );
 
+export const PdfInput = ({ ...props }) => (
+  <input 
+    type="file" 
+    accept="application/pdf" 
+    className={styles.fileInput} 
+    {...props} 
+  />
+);
+
 export const ImagePreview = ({ src, alt }) => (
   src ? <img src={src} alt={alt} className={styles.imagePreview} /> : null
 );
+
+/**
+ * New: Radio Group for Invest-related choices
+ */
+export const InvestRadioGroup = ({ 
+  name, 
+  value, 
+  onChange, 
+  options = [
+    { value: 'yes', label: 'Yes' },
+    { value: 'no', label: 'No' }
+  ],
+  required = false
+}) => {
+  return (
+    <FormGroup>
+      <Label required={required}>Invest</Label>
+      <div className={styles.radioGroup}>
+        {options.map((option) => (
+          <label key={option.value} className={styles.radioLabel}>
+            <input
+              type="radio"
+              name={name}
+              value={option.value}
+              checked={value === option.value}
+              onChange={onChange}
+              className={styles.radioInput}
+              required={required}
+            />
+            <span>{option.label}</span>
+          </label>
+        ))}
+      </div>
+    </FormGroup>
+  );
+};
 
 export const Button = ({ 
   children, 
