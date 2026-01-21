@@ -30,7 +30,7 @@ const BOD = () => {
       </div>
 
       {/* Flexbox Cards */}
-      <div className="flex flex-wrap gap-6 max-w-7xl mx-auto lg:justify-start justify-center">
+      <div className="flex flex-wrap gap-8 max-w-7xl mx-auto justify-center lg:justify-start">
         {BOD_INFO.map((director, index) => (
           <div
             key={index}
@@ -55,6 +55,12 @@ const BOD = () => {
             <div className="p-5 text-center flex flex-col items-center">
               <h3 className="text-xl font-bold text-amber-700">
                 {director.name}
+              </h3>
+              <h3 className="text-sm font-bold text-amber-700">
+                {director?.alternativeName && (
+                  <span>({director.alternativeName})</span>
+                )}
+
               </h3>
               <p className="text-yellow-600 font-medium mt-1">
                 {director.title}

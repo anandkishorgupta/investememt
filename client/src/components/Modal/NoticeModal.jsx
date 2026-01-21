@@ -105,7 +105,7 @@ function NoticeModal({ open, onClose, images }) {
             whileTap={{ scale: 0.95 }}
             className="absolute -top-4 -right-4 w-12 h-12 rounded-full 
               bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 
-              text-white flex items-center justify-center shadow-lg"
+              text-white flex items-center justify-center shadow-lg cursor-pointer"
           >
             <FiX size={28} />
           </motion.button>

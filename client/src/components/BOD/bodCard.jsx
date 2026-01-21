@@ -25,6 +25,9 @@ const BODCard = ({ director }) => {
         <h3 className="text-xl font-bold text-amber-700">
           {director.name}
         </h3>
+        <h3 className="text-sm font-bold text-amber-700">
+          {director?.alternativeName}
+        </h3>
         <p className="text-yellow-600 font-medium mt-1">
           {director.title}
         </p>
