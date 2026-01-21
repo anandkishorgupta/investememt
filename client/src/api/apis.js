@@ -16,3 +16,14 @@ export const GetHeroSectionDataById = async (id) => {
     throw error.response?.data || error.message;
   }
 };
+
+// export const GetInvestWithUsData = async () => {
+//   try {
+//     const response = await axiosInstance.get("/portfolio");
+//     return response.data;
+//   } catch (error) {
+//     throw error.response?.data || error.message;
+
+//   }
+
+// }
