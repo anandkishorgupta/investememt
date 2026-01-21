@@ -1,11 +1,13 @@
 
 
+const API_URL = import.meta.env.VITE_API_URL;
 
 import { LazyMotion, domAnimation, motion } from "framer-motion";
-import { FiChevronRight, FiMapPin } from "react-icons/fi";
+import { useEffect, useState } from "react";
+import { FiChevronRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { portfolioData } from "../Constant/portfolioInfo";
-
+// import { portfolioData } from "../Constant/portfolioInfo";
+import { GetHeroSectionData } from "../api/apis";
 const containerVariants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
@@ -37,6 +39,7 @@ const truncateText = (text, maxLength = 100) => {
 };
 
 const Portfolio = () => {
+
   const renderMetaItem = (Icon, text) => (
     <div className="flex items-center gap-2 text-sm text-amber-800">
       <Icon className="text-[#D4AF37]" />
@@ -44,12 +47,38 @@ const Portfolio = () => {
     </div>
   );
 
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    const fetchHeroData = async () => {
+      try {
+        setLoading(true);
+        const res = await GetHeroSectionData();
+        setData(res?.portfolio);
+      } catch (err) {
+        setError(err);
+        console.error("Hero API Error:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchHeroData();
+  }, []);
+
+  const getImageUrl = (path) => {
+    if (!path) return "";
+    if (path.startsWith("http")) return path;
+    return `${API_URL}${path}`;
+  };
+
   return (
     <LazyMotion features={domAnimation}>
       <div className="min-h-screen  text-amber-900 relative overflow-hidden">
         <style>{shimmerKeyframes}</style>
- <div className="absolute -top-32 -left-32 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl" />
-      <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-100/20 rounded-full blur-3xl" />
+        <div className="absolute -top-32 -left-32 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl" />
+        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-100/20 rounded-full blur-3xl" />
 
         {/* Header */}
         <section className="relative overflow-hidden">
@@ -89,9 +118,10 @@ const Portfolio = () => {
             animate="show"
             className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
           >
-            {portfolioData.map((item) => (
+
+            {data?.map((item) => (
               <motion.article
-                key={item.id}
+                key={item._id}
                 variants={cardVariants}
                 initial="hidden"
                 whileInView="show"
@@ -107,8 +137,8 @@ const Portfolio = () => {
                 {/* Image */}
                 <div className="relative h-56 overflow-hidden z-10">
                   <motion.img
-                    src={item.image}
-                    alt={item.name}
+                    src={getImageUrl(item?.images?.[0])}
+                    alt={item.title}
                     className="h-full w-full object-contain"
                     whileHover={{ scale: 1.08 }}
                     transition={{ duration: 0.4 }}
@@ -122,7 +152,7 @@ const Portfolio = () => {
                 {/* Info */}
                 <div className="p-6 flex flex-col flex-grow relative z-20">
                   <h3 className="text-lg font-semibold group-hover:text-[#D4AF37] transition">
-                    {item.name}
+                    {item.title}
                   </h3>
                   <p className="mt-2 text-sm text-amber-800 leading-relaxed">
                     {truncateText(item.description, 100)}
@@ -139,14 +169,14 @@ const Portfolio = () => {
                     ))}
                   </div> */}
 
-                  <div className="mt-5 space-y-2">
+                  {/* <div className="mt-5 space-y-2">
                     {renderMetaItem(FiMapPin, item.location)}
-                  </div>
+                  </div> */}
 
                   {/* Button */}
                   <div className="mt-auto pt-6">
                     <Link
-                      to={`/portfolio/${item.id}`}
+                      to={`/portfolio/${item._id}`}
                       className="relative flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium bg-amber-50 border border-[#D4AF37]/30 transition-all duration-300 overflow-hidden
 hover:bg-gradient-to-r hover:from-[#FFD700]/40 hover:via-[#D4AF37]/20 hover:to-[#FFD700]/40 hover:text-amber-900 hover:shadow-[0_0_15px_rgba(212,175,55,0.3)]"
                     >
@@ -159,6 +189,7 @@ hover:bg-gradient-to-r hover:from-[#FFD700]/40 hover:via-[#D4AF37]/20 hover:to-[
                 </div>
               </motion.article>
             ))}
+
           </motion.div>
         </section>
       </div>
