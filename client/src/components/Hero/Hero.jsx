@@ -17,7 +17,9 @@ const Hero = () => {
       try {
         setLoading(true);
         const res = await GetHeroSectionData();
-        setData(res?.portfolio);
+        const investData = res?.portfolio?.filter(item => item.invest === true) || [];
+
+        setData(investData);
 
 
       } catch (err) {
