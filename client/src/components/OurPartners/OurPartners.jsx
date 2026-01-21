@@ -70,8 +70,10 @@ const PartnersSection = () => {
       try {
         setLoading(true);
         const res = await GetHeroSectionData();
+        const investData = res?.portfolio?.filter(item => item.invest === true) || [];
+
         // Extract first image from each portfolio
-        const logosFromBackend = res?.portfolio?.map(
+        const logosFromBackend = investData?.map(
           (item) => getImageUrl(item.images?.[0])
         ) || [];
         setData(logosFromBackend);
