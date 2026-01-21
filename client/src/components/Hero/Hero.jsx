@@ -60,7 +60,7 @@ const Hero = () => {
           bg-black/30 text-[#D4AF37] text-3xl font-bold
           shadow-[0_0_25px_rgba(212,175,55,0.7)]
           hover:shadow-[0_0_40px_rgba(212,175,55,1)]
-          transition">
+          transition cursor-pointer">
                 <FaChevronLeft className="text-2xl" />
               </button>
               {/* RIGHT ARROW */}
@@ -69,7 +69,7 @@ const Hero = () => {
          bg-black/30 text-[#D4AF37] text-3xl font-bold
          shadow-[0_0_25px_rgba(212,175,55,0.7)]
          hover:shadow-[0_0_40px_rgba(212,175,55,1)]
-         transition">
+         transition cursor-pointer">
                 <FaChevronRight className="text-2xl" />
 
               </button>
