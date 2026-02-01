@@ -106,16 +106,14 @@ const PartnersSection = () => {
     );
   }
   return (
-    <div className=" absolute w-full  z-50 lg:-bottom-3 sm:-bottom-30">
-      <div className="">
-        {/* <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-800">Our Trusted Partners</h2>
-          <p className="text-gray-500 mt-2">Empowering growth through strategic collaboration</p>
-        </div> */}
-
+    <div className=" 
+    absolute w-full z-50
+        -bottom-40
+        sm:-bottom-37
+        md:-bottom-10
+        lg:-bottom-6
+    ">
         <MarqueeRow duration={25} logos={data} />
-        {/* <MarqueeRow reverse duration={22} />  */}
-      </div>
     </div>
   );
 };

@@ -1,127 +1,128 @@
-import bodNaraPrasad from "../assets/BODImages/hero.jpg";
+// import bodNaraPrasad from "../assets/BODImages/hero.jpg";
+// import sudeepKumarChaudhary from "../assets/BODImages/sudip_kumar_chaudhary.jpeg";
 
 // export const BOD_INFO = [
+//   {
+//     name: "Nara Prasad Sitaula ",
+//     alternativeName: "Narayan Sitaula",
+//     title: "Chairman",
+//     image: bodNaraPrasad,
+//     description:
+//       "I am Nara Prasad Sitaula, born in Taplejung, and I am 46 years old. I am a business leader and entrepreneur with a Bachelor’s degree in Business Administration, and I bring extensive experience in management, energy, and cooperative sectors. Currently, I serve as the Chairman of Devshree Venture Pvt. Ltd. and Devshree Multipurpose Cooperative, and as a Director of Niko Energy Limited. I also hold the position of Managing Director at Waleng Tumhok Hydro Power Pvt. Ltd. In the past, I have served as a Director at Kohinoor Wires & Steel. I have over 22 years of professional experience with LIC Nepal, where I worked as an AM Agency Manager, along with 7 years of teaching experience at Roseboard School. These roles have helped me develop strong leadership, managerial, and professional skills. I am also an active investor in leading companies across the hydropower, cement, equity fund, and hospitality sectors. Beyond my business and professional engagements, I am deeply committed to community service. I currently serve as the Chairman of Sitaula Sewa Samaj, Bhaktapur. Previously, I served as a Director of Bhaktapur Jilla Baideshya Sahakari Sangh, and I now contribute to the organization as an Advisor.",
+//     socials: {
+//       facebook: "https://www.facebook.com/Npsitaula/",
+//     },
+//     portfolio: "https://portfolio-5cq7.onrender.com/"
+//   },
+//   {
+//     name: "Sudip Kumar Chaudhary",
+//     title: "Board Member",
+//     image: sudeepKumarChaudhary,
+//     description:
+//       "I hold a Bachelor’s degree in Civil Engineering from IoE, Pulchowk Campus, Tribhuvan University, a Master’s degree in Construction Management, and a Master’s degree in Economics. I have been involved in the energy development sector for over 15 years, working in the development, planning, design, monitoring, management, and construction supervision of numerous hydropower and solar PV projects. Currently, I serve as Managing Director of Spark Hydroelectric Company Limited (Tamor Mewa HEP 128 MW), Prakash Solution Pvt. Ltd. (Super Palung HPP 30 MW), Sunlight Energy Pvt. Ltd. (Udayapur Solar PV Project 10 MW), and S & U Consult Pvt. Ltd., an engineering consulting firm specializing in hydropower. I am also the Executive Chairman of Him River Power Limited (Liping Khola HPP 16.26 MW) and Chairman of SN Energy Limited (Super Seti HPP 24 MW) and Terai Village Pvt. Ltd., an eco-farm tourism development company. Additionally, I have worked as Project Manager for several hydropower projects including Mardi HPP (4.8 MW), Upper Mardi HPP (7 MW), Bijayapur-I HEP (4.5 MW), Bijayapur-II HPP (4.5 MW), and Madkyu Khola HPP (13 MW).",
+//     socials: {},
+//     portfolio: "",
+//   }
 
 
 // ];
 
+import bamBahadurThapa from "../assets/BODImages/bamBahadurThapa.jpeg";
+import buddhiBahadurThapa from "../assets/BODImages/buddhiBahadurThapa.jpeg";
+import bodNaraPrasad from "../assets/BODImages/hero.jpg";
+import sudeepKumarChaudhary from "../assets/BODImages/sudip_kumar_chaudhary.jpeg";
+import surendraKumarSitaula from "../assets/BODImages/surendraKumarSitaula.jpeg";
+
+
+
+
 export const BOD_INFO = [
   {
-    name: "Nara Prasad Sitaula ",
+    name: "Nara Prasad Sitaula",
     alternativeName: "Narayan Sitaula",
     title: "Chairman",
     image: bodNaraPrasad,
     description:
-      "Nara Prasad Sitaula, age 46, is a business leader from Taplejung with a BBA and over 20 years of experience in management, energy, and cooperative sectors. He holds key leadership roles in multiple companies and is actively involved in community service.",
+      "I am Nara Prasad Sitaula, born in Taplejung, and I am 46 years old. I am a business leader and entrepreneur with a Bachelor’s degree in Business Administration, and I bring extensive experience in management, energy, and cooperative sectors.",
+    education: "Bachelor’s in Business Administration, Tribhuvan University",
+    experience: "22+ Years",
+    specialization: "Leadership & Investment",
+    roles: [
+      "Chairman of Devshree Ventures Pvt Ltd",
+      "Chairman of Devshree Multipurpose Cooperative",
+      "Director of Niko Energy Limited",
+      "Managing Director of Waling Khurkhola Hydropower Ltd",
+      "Former Director of Kohinoor Wires and Steel",
+      "Agency Manager at LIC (Nepal) Ltd – 22+ years",
+      "Teacher at Rosebud School – 7 years"
+    ],
+    investments: [
+      "Puwa Khola Hydropower",
+      "Mahasakti Cement",
+      "Him River Power Limited",
+      "Spark Hydro",
+      "Empire Hydro",
+      "Hulas Infra",
+      "Hulas Iron Industries"
+    ],
+    community: [
+      "Chairman of Sitaula Sewa Samaj, Bhaktapur",
+      "Advisor at Bhaktapur Jilla Baideshya Sahakari Sangh"
+    ],
+    skills: [
+      "Strategic Leadership",
+      "Hydropower Development",
+      "Cooperative Management",
+      "Corporate Governance",
+      "Investment Strategy",
+      "Community Service"
+    ],
     socials: {
       facebook: "https://www.facebook.com/Npsitaula/",
     },
     portfolio: "https://portfolio-5cq7.onrender.com/"
   },
   {
-    name: "Sita Ram Acharya",
-    title: "Vice Chairman",
-    image: "https://randomuser.me/api/portraits/men/2.jpg",
+    name: "Sudip Kumar Chaudhary",
+    title: "Board Member",
+    image: sudeepKumarChaudhary,
     description:
-      "Sita Ram Acharya, 52, is a seasoned professional in finance and investment sectors with more than 25 years of experience. He focuses on strategic planning and corporate governance.",
-    socials: {
-      facebook: "https://www.facebook.com/sitaram.acharya",
-      instagram: "https://www.instagram.com/sitaram.acharya"
-    },
-    portfolio: "https://sitaram-portfolio.example.com/"
+      "I hold a Bachelor’s degree in Civil Engineering from IoE, Pulchowk Campus, Tribhuvan University, a Master’s degree in Construction Management, and a Master’s degree in Economics. I have been involved in the energy development sector for over 15 years.",
+    education: "B.E. Civil (Pulchowk), M.Sc. Construction Mgmt, M.A. Economics",
+    experience: "15+ Years",
+    specialization: "Energy & Infrastructure",
+    roles: [
+      "Managing Director – Spark Hydroelectric Co. Ltd (Tamor Mewa HEP 128 MW)",
+      "Managing Director – Prakash Solution Pvt. Ltd (Super Palung HPP 30 MW)",
+      "Managing Director – Sunlight Energy Pvt. Ltd (Udayapur Solar PV 10 MW)",
+      "Managing Director – S & U Consult Pvt. Ltd (Engineering Consulting)",
+      "Executive Chairman – Him River Power Ltd (Liping Khola HPP 16.26 MW)",
+      "Chairman – SN Energy Ltd (Super Seti HPP 24 MW)",
+      "Chairman – Terai Village Pvt. Ltd (Eco-Tourism)",
+      "Project Manager – Mardi HPP (4.8 MW), Upper Mardi (7 MW), Bijayapur-I/II, Madkyu Khola (13 MW)"
+    ],
+    investments: [],
+    community: [],
+    skills: [
+      "Hydropower Development",
+      "Solar PV Projects",
+      "Project Management",
+      "Engineering Consulting",
+      "Infrastructure Planning"
+    ],
+    socials: {},
+    portfolio: ""
   },
   {
-    name: "Mina Shrestha",
-    title: "Director of Operations",
-    image: "https://randomuser.me/api/portraits/women/3.jpg",
-    description:
-      "Mina Shrestha, 38, has a background in business administration and operational management. She is responsible for overseeing daily operations and streamlining processes.",
-    socials: {
-      facebook: "https://www.facebook.com/mina.shrestha",
-      instagram: "https://www.instagram.com/mina.shrestha"
-    }
+    name: "Dr. Surendra Kumar Sitaula",
+    image: surendraKumarSitaula
   },
   {
-    name: "Rajesh Thapa",
-    title: "Chief Marketing Officer",
-    image: "https://randomuser.me/api/portraits/men/4.jpg",
-    description:
-      "Rajesh Thapa, 41, is an expert in digital marketing and brand management. He has helped multiple companies increase their market presence and customer engagement.",
-    socials: {
-      facebook: "https://www.facebook.com/rajesh.thapa",
-      instagram: "https://www.instagram.com/rajesh.thapa"
-    },
-    portfolio: "https://rajesh-thapa-portfolio.example.com/"
+    name: "Bam Bahadur Thapa",
+    image: bamBahadurThapa
   },
   {
-    name: "Anita Gurung",
-    title: "Chief Financial Officer",
-    image: "https://randomuser.me/api/portraits/women/5.jpg",
-    description:
-      "Anita Gurung, 45, specializes in corporate finance and investment strategy, with over 20 years of experience in financial planning and risk management.",
-    socials: {
-      facebook: "https://www.facebook.com/anita.gurung",
-      instagram: "https://www.instagram.com/anita.gurung"
-    }
-  },
-  {
-    name: "Bibek Rana",
-    alternativeName: "Bibek Rana",
-    title: "Head of Technology",
-    image: "https://randomuser.me/api/portraits/men/6.jpg",
-    description:
-      "Bibek Rana, 39, is a tech visionary leading digital transformation and software development initiatives across multiple organizations.",
-    socials: {
-      facebook: "https://www.facebook.com/bibek.rana",
-      instagram: "https://www.instagram.com/bibek.rana"
-    },
-    portfolio: "https://bibek-portfolio.example.com/"
-  },
-  {
-    name: "Sabina Koirala",
-    alternativeName: "Sabina Koirala",
-    title: "Head of Human Resources",
-    image: "https://randomuser.me/api/portraits/women/7.jpg",
-    description:
-      "Sabina Koirala, 36, manages recruitment, employee engagement, and talent development strategies across the organization.",
-    socials: {
-      facebook: "https://www.facebook.com/sabina.koirala",
-      instagram: "https://www.instagram.com/sabina.koirala"
-    }
-  },
-  {
-    name: "Prakash Bhandari",
-    title: "Business Development Manager",
-    image: "https://randomuser.me/api/portraits/men/8.jpg",
-    description:
-      "Prakash Bhandari, 40, drives growth through strategic partnerships, market analysis, and client relationship management.",
-    socials: {
-      facebook: "https://www.facebook.com/prakash.bhandari",
-      instagram: "https://www.instagram.com/prakash.bhandari"
-    },
-    portfolio: "https://prakash-portfolio.example.com/"
-  },
-  {
-    name: "Sangita Lama",
-    title: "Project Manager",
-    image: "https://randomuser.me/api/portraits/women/9.jpg",
-    description:
-      "Sangita Lama, 33, oversees project execution, resource allocation, and ensures timely delivery of client projects.",
-    socials: {
-      facebook: "https://www.facebook.com/sangita.lama",
-      instagram: "https://www.instagram.com/sangita.lama"
-    }
-  },
-  {
-    name: "Ramesh Adhikari",
-    alternativeName: "Ramesh Adhikari",
-    title: "Legal Advisor",
-    image: "https://randomuser.me/api/portraits/men/10.jpg",
-    description:
-      "Ramesh Adhikari, 50, provides legal guidance on contracts, corporate compliance, and risk mitigation strategies.",
-    socials: {
-      facebook: "https://www.facebook.com/ramesh.adhikari",
-      instagram: "https://www.instagram.com/ramesh.adhikari"
-    }
+    name: "Buddhi Bahadur Thapa",
+    image: buddhiBahadurThapa
   }
 ];

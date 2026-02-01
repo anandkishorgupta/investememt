@@ -2,9 +2,9 @@
 
 @import "tailwindcss";
 
-body {
+/* body {
   font-family: 'Inter', sans-serif;
-}
+} */
 
 /* Card Styles */
 .dashboard-card {
@@ -176,4 +176,10 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: transparent;
+}
+
+
+
+body {
+  font-family: 'Inter', sans-serif;
 }
