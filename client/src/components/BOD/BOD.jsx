@@ -2,7 +2,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { BOD_INFO } from "../../Constant/bodInfo";
-import BODCard from "./BODCard";
+import BODCard from "./bodCard";
 import DirectorModal from "./DirectorModal";
 
 const BOD = () => {
