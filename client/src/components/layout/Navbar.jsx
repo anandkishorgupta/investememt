@@ -147,7 +147,7 @@ const Navbar = () => {
                   <img
                     src={devshreeLogo}
                     alt="logo"
-                    className="w-9 h-9 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full"
+                    className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full"
                   />
                 </div>
                 <div className="hidden sm:block">

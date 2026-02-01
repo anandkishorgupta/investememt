@@ -58,6 +58,7 @@ const WhyChooseUs = () => {
       ref={ref}
       className="
         relative overflow-hidden
+        sm:mt-5
         py-20 px-5 md:px-10 lg:px-16
         bg-gradient-to-br from-amber-50 via-white to-amber-50
         text-amber-900

@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
    server: {
@@ -8,7 +8,7 @@ export default defineConfig({
     port: 5173, 
     allowedHosts: [
     'localhost', 
-    'uncontracted-overjudiciously-deanna.ngrok-free.dev', // add your ngrok URL here
+    'overwild-siena-nontemperately.ngrok-free.dev', // add your ngrok URL here
   ],
   },
   plugins: [

@@ -74,11 +74,6 @@ const Hero = () => {
 
               </button>
               <Swiper {...swiperConfig} className="min-h-[75vh]">
-                {/* {HERO_INVESTMENTS.map((item) => (
-                  <SwiperSlide key={item.id} className="">
-                    <HeroSlide item={item} />
-                  </SwiperSlide>
-                ))} */}
 
                 {data?.map((item) => (
                   <SwiperSlide key={item.id} className="">
