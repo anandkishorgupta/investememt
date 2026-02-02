@@ -1,9 +1,7 @@
 
 
-import { useEffect, useState } from "react";
-
-
 import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import {
     FaBriefcase,
     FaExternalLinkAlt,
@@ -149,9 +147,9 @@ const DirectorModal = ({ director, onClose }) => {
                             </div>
 
                             {/* Social Links */}
-                            <div className="flex gap-3 mb-6">
+                            <div className="flex gap-3 mb-6 w-fit ">
                                 {director.socials?.facebook && (
-                                    <a href={director.socials.facebook} className="flex-1 bg-amber-50 py-2.5 rounded-lg flex items-center justify-center gap-2">
+                                    <a href={director.socials.facebook} className="flex-1 bg-amber-50 py-2.5 rounded-lg flex items-center justify-center gap-2 px-6">
                                         <FaFacebookF className="text-amber-600" />
                                         <span className="text-sm font-medium text-amber-700">Facebook</span>
                                     </a>
@@ -211,16 +209,47 @@ const DirectorModal = ({ director, onClose }) => {
                                     </section>
                                 )}
 
+                                {/* {hasPortfolio && (
+                                    <a
+                                        href={director.portfolio}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="block w-fit items-center mx-auto px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-2xl text-center font-bold text-lg shadow-lg shadow-amber-200/50 hover:shadow-xl hover:shadow-amber-200/70 transition-all active:scale-[0.98]"
+                                    >
+                                        <div className="flex items-center justify-center gap-3">
+                                            <FaBriefcase /> View Full Portfolio <FaExternalLinkAlt size={12} />
+                                        </div>
+                                    </a>
+                                )} */}
                                 {hasPortfolio && (
                                     <a
                                         href={director.portfolio}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="block w-full py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-2xl text-center font-bold text-lg shadow-lg shadow-amber-200/50 hover:shadow-xl hover:shadow-amber-200/70 transition-all active:scale-[0.98]"
+                                        className="w-fit mx-auto group mt-6 px-5 py-2.5 bg-gradient-to-r from-amber-600 to-orange-500 text-white rounded-lg font-medium flex items-center justify-center space-x-2 shadow-md text-sm md:text-base relative overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-amber-200/50 hover:scale-[1.02] active:scale-[0.98]"
                                     >
-                                        <div className="flex items-center justify-center gap-3">
-                                            <FaBriefcase /> View Full Portfolio <FaExternalLinkAlt size={12} />
-                                        </div>
+                                        {/* Shiny overlay effect */}
+                                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+
+                                        {/* Magic sparkle dots */}
+                                        <div className="absolute top-1 left-1 w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping" />
+                                        <div className="absolute bottom-1 right-1 w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping group-hover:delay-150" />
+
+                                        {/* Button content with icon animations */}
+                                        <FaBriefcase
+                                            size={14}
+                                            className="transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110"
+                                        />
+                                        <span className="relative transition-all duration-300 group-hover:tracking-wide">
+                                            View Full Portfolio
+                                        </span>
+                                        <FaExternalLinkAlt
+                                            size={10}
+                                            className="transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5"
+                                        />
+
+                                        {/* Glow effect */}
+                                        <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-amber-400/0 via-amber-300/30 to-amber-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
                                     </a>
                                 )}
                             </div>
@@ -242,53 +271,147 @@ const DirectorModal = ({ director, onClose }) => {
                 >
                     <div className="flex flex-col lg:flex-row h-full">
                         {/* Left Panel */}
-                        <div className="lg:w-2/5 bg-gradient-to-b from-amber-50 to-white p-8 flex flex-col items-center relative">
+                        <div className=" scroll-left-panel lg:w-2/5 bg-gradient-to-b from-amber-50 to-white p-6 flex flex-col relative" style={{ maxHeight: 'calc(92vh - 2rem)' }}>
+                            {/* Fixed Close Button */}
                             <button
                                 onClick={onClose}
-                                className="absolute top-4 right-4 text-amber-600 hover:text-amber-800 p-2 hover:bg-amber-100 rounded-full transition-colors z-10"
+                                className="absolute top-4 right-4 text-amber-600 hover:text-amber-800 p-2 hover:bg-amber-100 rounded-full transition-colors z-10 cursor-pointer"
                                 aria-label="Close profile"
                             >
                                 <FaTimes size={24} />
                             </button>
 
-                            <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-amber-200 shadow-lg mb-6">
-                                <img src={director.image} alt={director.name} className="w-full h-full object-cover" />
-                            </div>
+                            {/* Scrollable Content */}
+                            <div className="overflow-y-auto w-full h-full ">
+                                <div className="flex flex-col items-center text-center">
+                                    {/* Profile Image – closer to top */}
+                                    <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-amber-200 shadow-lg mb-5 flex-shrink-0">
+                                        <img
+                                            src={director.image}
+                                            alt={director.name}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
 
-                            <h2 className="text-3xl font-bold text-amber-900 text-center tracking-tight">{director.name}</h2>
-                            {director.alternativeName && <p className="text-amber-700 text-lg mt-1">({director.alternativeName})</p>}
+                                    {/* Name */}
+                                    <h2 className="text-2xl md:text-3xl font-bold text-amber-900 leading-tight">
+                                        {director.name}
+                                    </h2>
 
-                            <div className="flex items-center justify-center mt-3">
-                                <FaUserTie className="text-amber-600 mr-2" />
-                                <p className="text-xl font-semibold text-amber-700 tracking-tight">{director.title}</p>
-                            </div>
+                                    {/* Alternative Name (if any) */}
+                                    {director.alternativeName && (
+                                        <p className="text-amber-700 mt-1 text-base md:text-lg">
+                                            ({director.alternativeName})
+                                        </p>
+                                    )}
 
-                            {/* Social Icons */}
-                            <div className="flex space-x-4 mt-8">
-                                {director.socials?.facebook && <a href={director.socials.facebook} className="p-3 bg-amber-100 text-amber-700 rounded-full hover:bg-amber-200 hover:text-amber-800 transition-all hover:scale-110"><FaFacebookF size={20} /></a>}
-                                {director.socials?.instagram && <a href={director.socials.instagram} className="p-3 bg-amber-100 text-amber-700 rounded-full hover:bg-amber-200 hover:text-amber-800 transition-all hover:scale-110"><FaInstagram size={20} /></a>}
-                                {director.socials?.linkedin && <a href={director.socials.linkedin} className="p-3 bg-amber-100 text-amber-700 rounded-full hover:bg-amber-200 hover:text-amber-800 transition-all hover:scale-110"><FaLinkedinIn size={20} /></a>}
-                            </div>
+                                    {/* Title */}
+                                    <div className="flex items-center justify-center mt-3 mb-6">
+                                        <FaUserTie className="text-amber-600 mr-2" />
+                                        <p className="text-lg md:text-xl font-semibold text-amber-700">
+                                            {director.title}
+                                        </p>
+                                    </div>
 
-                            {hasPortfolio && (
-                                <a href={director.portfolio} target="_blank" rel="noopener noreferrer" className="mt-8 px-6 py-3 bg-gradient-to-r from-amber-600 to-orange-500 text-white rounded-lg hover:from-amber-700 hover:to-orange-600 transition-all font-semibold flex items-center space-x-2 shadow-md">
-                                    <FaBriefcase />
-                                    <span>View Full Portfolio</span>
-                                    <FaExternalLinkAlt size={12} />
-                                </a>
-                            )}
+                                    {/* Social Icons */}
+                                    <div className="flex space-x-3 my-4">
+                                        {director.socials?.facebook && (
+                                            <a
+                                                href={director.socials.facebook}
+                                                className="p-2.5 bg-amber-100 text-amber-700 rounded-full hover:bg-amber-200 hover:text-amber-800 transition-all hover:scale-110"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label="Facebook"
+                                            >
+                                                <FaFacebookF size={18} />
+                                            </a>
+                                        )}
+                                        {director.socials?.instagram && (
+                                            <a
+                                                href={director.socials.instagram}
+                                                className="p-2.5 bg-amber-100 text-amber-700 rounded-full hover:bg-amber-200 hover:text-amber-800 transition-all hover:scale-110"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label="Instagram"
+                                            >
+                                                <FaInstagram size={18} />
+                                            </a>
+                                        )}
+                                        {director.socials?.linkedin && (
+                                            <a
+                                                href={director.socials.linkedin}
+                                                className="p-2.5 bg-amber-100 text-amber-700 rounded-full hover:bg-amber-200 hover:text-amber-800 transition-all hover:scale-110"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label="LinkedIn"
+                                            >
+                                                <FaLinkedinIn size={18} />
+                                            </a>
+                                        )}
+                                    </div>
 
-                            {/* Stats */}
-                            <div className="grid grid-cols-2 gap-4 mt-8 w-full max-w-xs">
-                                <div className="text-center p-4 bg-white rounded-xl shadow-sm border border-amber-100">
-                                    <FaGraduationCap className="text-amber-600 mx-auto text-xl" />
-                                    <p className="text-amber-800 font-bold mt-2">{director.experience || "—"}</p>
-                                    <p className="text-xs text-gray-600">Experience</p>
-                                </div>
-                                <div className="text-center p-4 bg-white rounded-xl shadow-sm border border-amber-100">
-                                    <FaBriefcase className="text-amber-600 mx-auto text-xl" />
-                                    <p className="text-amber-800 font-bold mt-2">{director.specialization || "—"}</p>
-                                    <p className="text-xs text-gray-600">Specialization</p>
+                                    {/* Stats */}
+                                    <div className="grid grid-cols-2 gap-3 w-full max-w-xs mt-4">
+                                        <div className="text-center p-3 bg-white rounded-xl shadow-sm border border-amber-100">
+                                            <FaGraduationCap className="text-amber-600 mx-auto text-lg" />
+                                            <p className="text-amber-800 font-bold mt-1.5 text-sm md:text-base">
+                                                {director.experience || "—"}
+                                            </p>
+                                            <p className="text-xs text-gray-600 mt-1">Experience</p>
+                                        </div>
+                                        <div className="text-center p-3 bg-white rounded-xl shadow-sm border border-amber-100">
+                                            <FaBriefcase className="text-amber-600 mx-auto text-lg" />
+                                            <p className="text-amber-800 font-bold mt-1.5 text-sm md:text-base">
+                                                {director.specialization || "—"}
+                                            </p>
+                                            <p className="text-xs text-gray-600 mt-1">Specialization</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Portfolio Button */}
+                                    {/* {hasPortfolio && (
+                                        <a
+                                            href={director.portfolio}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="mt-6 px-5 py-2.5 bg-gradient-to-r from-amber-600 to-orange-500 text-white rounded-lg hover:from-amber-700 hover:to-orange-600 transition-all font-medium flex items-center justify-center space-x-2 shadow-md text-sm md:text-base"
+                                        >
+                                            <FaBriefcase size={14} />
+                                            <span>View Full Portfolio</span>
+                                            <FaExternalLinkAlt size={10} />
+                                        </a>
+                                    )} */}
+                                    {hasPortfolio && (
+                                        <a
+                                            href={director.portfolio}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="group mt-6 px-5 py-2.5 bg-gradient-to-r from-amber-600 to-orange-500 text-white rounded-lg font-medium flex items-center justify-center space-x-2 shadow-md text-sm md:text-base relative overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-amber-200/50 hover:scale-[1.02] active:scale-[0.98]"
+                                        >
+                                            {/* Shiny overlay effect */}
+                                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+
+                                            {/* Magic sparkle dots */}
+                                            <div className="absolute top-1 left-1 w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping" />
+                                            <div className="absolute bottom-1 right-1 w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping group-hover:delay-150" />
+
+                                            {/* Button content with icon animations */}
+                                            <FaBriefcase
+                                                size={14}
+                                                className="transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110"
+                                            />
+                                            <span className="relative transition-all duration-300 group-hover:tracking-wide">
+                                                View Full Portfolio
+                                            </span>
+                                            <FaExternalLinkAlt
+                                                size={10}
+                                                className="transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5"
+                                            />
+
+                                            {/* Glow effect */}
+                                            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-amber-400/0 via-amber-300/30 to-amber-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+                                        </a>
+                                    )}
                                 </div>
                             </div>
                         </div>

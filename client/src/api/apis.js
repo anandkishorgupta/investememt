@@ -17,13 +17,8 @@ export const GetHeroSectionDataById = async (id) => {
   }
 };
 
-// export const GetInvestWithUsData = async () => {
-//   try {
-//     const response = await axiosInstance.get("/portfolio");
-//     return response.data;
-//   } catch (error) {
-//     throw error.response?.data || error.message;
-
-//   }
-
-// }
+// get directors
+export const getDirectors = async () => {
+  const res = await axiosInstance.get("/directors");
+  return res.data;
+};

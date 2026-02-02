@@ -111,3 +111,10 @@ html {
   }
 }
 
+/*  */
+.scroll-left-panel {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* iOS smooth/bouncy scrolling */
+    overscroll-behavior: contain;      /* allows "rubber" effect without propagating scroll */
+    scroll-behavior: smooth;           /* smooth programmatic scroll */
+}

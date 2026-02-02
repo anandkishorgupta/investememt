@@ -1,15 +1,41 @@
 // components/BOD.jsx
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
-import { BOD_INFO } from "../../Constant/bodInfo";
+import { useEffect, useState } from "react";
+// import { BOD_INFO } from "../../Constant/bodInfo";
+import { getDirectors } from "../../api/apis";
 import BODCard from "./bodCard";
 import DirectorModal from "./DirectorModal";
 
 const BOD = () => {
+  const [directors, setDirectors] = useState([]);
   const [selectedDirector, setSelectedDirector] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchDirectors = async () => {
+      try {
+        const data = await getDirectors();
+        setDirectors(data.directors);
+      } catch (error) {
+        console.error("Failed to fetch directors", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDirectors();
+  }, []);
 
   const openModal = (director) => setSelectedDirector(director);
   const closeModal = () => setSelectedDirector(null);
+  if (loading) {
+    return (
+      <div className="py-20 text-center text-amber-700 font-semibold">
+        Loading directors...
+      </div>
+    );
+  }
+
 
   return (
     <div className="py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-gradient-to-b from-white to-amber-50/20">
@@ -41,7 +67,7 @@ const BOD = () => {
 
       {/* Cards Grid */}
       <div className="flex flex-wrap gap-8 max-w-7xl mx-auto justify-center">
-        {BOD_INFO.map((director, index) => (
+        {directors.map((director, index) => (
           <BODCard
             key={index}
             director={director}
@@ -62,3 +88,4 @@ const BOD = () => {
 };
 
 export default BOD;
+
