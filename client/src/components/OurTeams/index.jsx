@@ -48,7 +48,7 @@ const OurTeam = () => {
       </div>
 
       {/* Flexbox Cards */}
-      <div className="flex flex-wrap lg:justify-start justify-center gap-8 max-w-7xl mx-auto">
+      <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto">
         {teams.map((member, index) => (
           <div
             key={index}
