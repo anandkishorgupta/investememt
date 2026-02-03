@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../components/common/Card';
 import { useAuth } from '../context/AuthContext';
-const API_URL = import.meta.env.VITE_API_URL ;
+import { FaUserTie, FaUsers } from 'react-icons/fa';
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const DashboardPage = () => {
   const [stats, setStats] = useState([
@@ -15,7 +17,7 @@ const DashboardPage = () => {
         </svg>
       ),
       color: 'from-blue-500 to-blue-600',
-      link: '/media'
+      link: '/admin/media'
     },
     {
       title: 'Portfolios',
@@ -26,9 +28,22 @@ const DashboardPage = () => {
         </svg>
       ),
       color: 'from-purple-500 to-purple-600',
-      link: '/portfolio'
+      link: '/admin/portfolio'
     },
-    
+    {
+      title: 'Directors',
+      value: '0',
+      // icon: (
+      //   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      //     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+      //       d="M5.121 17.804A9 9 0 1119.879 17.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+      //   </svg>
+      // ),
+      icon: <FaUserTie className="w-5 h-5" />,
+      color: 'from-purple-500 to-purple-600',
+      link: '/admin/Directors'
+    },
+
     {
       title: 'Contact Messages',
       value: '0',
@@ -38,14 +53,14 @@ const DashboardPage = () => {
         </svg>
       ),
       color: 'from-orange-500 to-orange-600',
-      link: '/contact'
+      link: '/admin/contact'
     }
   ]);
-  
+
   const [recentActivity, setRecentActivity] = useState([
     { action: 'Loading recent activity...', time: 'Just now', type: 'loading' }
   ]);
-  
+
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
 
@@ -53,63 +68,62 @@ const DashboardPage = () => {
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
-      
+
       // Get auth token
       const token = localStorage.getItem('adminToken');
-      
+
       if (!token) {
         console.error('No authentication token found');
         return;
       }
-      
+
       // Fetch counts from all APIs
-      const [mediaRes, portfolioRes,  contactRes] = await Promise.all([
+      const [mediaRes, portfolioRes, directorRes, contactRes] = await Promise.all([
         fetch(`${API_URL}/api/media`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
+          headers: { Authorization: `Bearer ${token}` }
         }),
         fetch(`${API_URL}/api/portfolio`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
+          headers: { Authorization: `Bearer ${token}` }
         }),
-        
+        fetch(`${API_URL}/api/directors`, {
+          headers: { Authorization: `Bearer ${token}` }
+        }),
         fetch(`${API_URL}/api/contact`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
+          headers: { Authorization: `Bearer ${token}` }
         })
       ]);
-      
-      const [mediaResult, portfolioResult,  contactResult] = await Promise.all([
+
+      const [mediaResult, portfolioResult, DirectorsResult, contactResult] = await Promise.all([
         mediaRes.json(),
         portfolioRes.json(),
-        
+        directorRes.json(),
         contactRes.json()
       ]);
-      
+
       // Handle pagination response format
       const mediaData = Array.isArray(mediaResult) ? mediaResult : mediaResult.media || [];
       const portfolioData = Array.isArray(portfolioResult) ? portfolioResult : portfolioResult.portfolio || [];
-    
+      const directorData = Array.isArray(DirectorsResult) ? DirectorsResult : DirectorsResult.director || [];
+
+
       const contactData = Array.isArray(contactResult) ? contactResult : contactResult.messages || [];
-      
+
       // Calculate media file count (sum of all images in all media documents)
       const mediaCount = mediaData.reduce((total, media) => total + (media.images ? media.images.length : 0), 0);
-      
+
       // Update stats
       const updatedStats = [
         { ...stats[0], value: mediaCount.toString() },
         { ...stats[1], value: portfolioData.length.toString() },
-        { ...stats[2], value: contactData.length.toString() }
+        { ...stats[2], value: directorData.length.toString() },
+        { ...stats[3], value: contactData.length.toString() }
       ];
-      
+
       setStats(updatedStats);
-      
+
       // Create recent activity based on latest items
       const activities = [];
-      
+
       // Get latest media
       if (mediaData.length > 0) {
         const latestMedia = mediaData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
@@ -121,7 +135,7 @@ const DashboardPage = () => {
           });
         }
       }
-      
+
       // Get latest portfolio
       if (portfolioData.length > 0) {
         const latestportfolio = portfolioData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
@@ -133,9 +147,19 @@ const DashboardPage = () => {
           });
         }
       }
-      
-      
-      
+      if (directorData.length > 0) {
+        const latestDirector = directorData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
+        if (latestDirector) {
+          activities.push({
+            action: 'Director published',
+            time: formatTimeAgo(latestDirector.createdAt),
+            type: 'Director'
+          });
+        }
+      }
+
+
+
       // Get latest contact
       if (contactData.length > 0) {
         const latestContact = contactData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
@@ -147,23 +171,23 @@ const DashboardPage = () => {
           });
         }
       }
-      
+
       // Sort activities by time (newest first)
       activities.sort((a, b) => {
         const timeA = getTimeFromAgo(a.time);
         const timeB = getTimeFromAgo(b.time);
         return timeB - timeA;
       });
-      
+
       // Limit to 4 most recent activities
       const recentActivities = activities.slice(0, 4);
-    
+
       if (recentActivities.length > 0) {
         setRecentActivity(recentActivities);
       } else {
         setRecentActivity([{ action: 'No recent activity', time: '', type: 'empty' }]);
       }
-      
+
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
       setRecentActivity([{ action: 'Error loading activity', time: '', type: 'error' }]);
@@ -171,7 +195,7 @@ const DashboardPage = () => {
       setLoading(false);
     }
   };
-  
+
   // Format time ago helper
   const formatTimeAgo = (dateString) => {
     const date = new Date(dateString);
@@ -180,24 +204,24 @@ const DashboardPage = () => {
     const diffInMinutes = Math.floor(diffInMs / 60000);
     const diffInHours = Math.floor(diffInMs / 3600000);
     const diffInDays = Math.floor(diffInMs / 86400000);
-    
+
     if (diffInMinutes < 1) return 'Just now';
     if (diffInMinutes < 60) return `${diffInMinutes} minute${diffInMinutes > 1 ? 's' : ''} ago`;
     if (diffInHours < 24) return `${diffInHours} hour${diffInHours > 1 ? 's' : ''} ago`;
     if (diffInDays < 7) return `${diffInDays} day${diffInDays > 1 ? 's' : ''} ago`;
     return `${diffInDays} day${diffInDays > 1 ? 's' : ''} ago`;
   };
-  
+
   // Helper to convert time ago string back to timestamp for sorting
   const getTimeFromAgo = (timeAgo) => {
     if (timeAgo === 'Just now') return Date.now();
-    
+
     const match = timeAgo.match(/(\d+)\s*(minute|hour|day|week|month|year)s?\s+ago/);
     if (!match) return Date.now();
-    
+
     const value = parseInt(match[1]);
     const unit = match[2];
-    
+
     const now = Date.now();
     switch (unit) {
       case 'minute': return now - (value * 60000);
@@ -209,7 +233,7 @@ const DashboardPage = () => {
       default: return now;
     }
   };
-  
+
   useEffect(() => {
     fetchDashboardData();
   }, []);
@@ -222,7 +246,7 @@ const DashboardPage = () => {
             <h1 className="text-3xl font-bold text-gray-800">Dashboard Overview</h1>
             <p className="text-gray-600 mt-1">Welcome back! Here's what's happening today.</p>
           </div>
-          <button 
+          <button
             onClick={fetchDashboardData}
             disabled={loading}
             className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-600 disabled:opacity-50"
@@ -285,7 +309,7 @@ const DashboardPage = () => {
         <Card>
           <h2 className="text-xl font-semibold text-gray-800 mb-4">Quick Actions</h2>
           <div className="space-y-3">
-            <Link to="/media" className="block">
+            <Link to="/admin/media" className="block">
               <button className="w-full text-left px-4 py-3 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg transition-colors flex items-center">
                 <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -293,7 +317,7 @@ const DashboardPage = () => {
                 Upload Media
               </button>
             </Link>
-            <Link to="/portfolio" className="block">
+            <Link to="/admin/portfolio" className="block">
               <button className="w-full text-left px-4 py-3 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg transition-colors flex items-center">
                 <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -301,8 +325,16 @@ const DashboardPage = () => {
                 Add Portfolios
               </button>
             </Link>
-            
-            <Link to="/contact" className="block">
+            <Link to="/admin/Directors" className="block">
+              <button className="w-full text-left px-4 py-3 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg transition-colors flex items-center">
+                <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                </svg>
+                Add Director
+              </button>
+            </Link>
+
+            <Link to="/admin/contact" className="block">
               <button className="w-full text-left px-4 py-3 bg-orange-50 hover:bg-orange-100 text-orange-700 rounded-lg transition-colors flex items-center">
                 <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -313,7 +345,7 @@ const DashboardPage = () => {
             </Link>
           </div>
 
-          
+
         </Card>
       </div>
     </div>

@@ -15,6 +15,9 @@ import DashboardPage from "./admin/pages/Dashboard";
 import MediaPage from "./admin/pages/Media";
 import NewsPage from "./admin/pages/News";
 import PressReleasePage from "./admin/pages/Portfolio";
+import Directors from "./admin/pages/Directors";
+import Team from "./admin/pages/Team";
+
 
 /* ---------------- PUBLIC ---------------- */
 import Footer from "./components/layout/Footer";
@@ -111,8 +114,12 @@ const App = () => {
               <Route path="/admin" element={<DashboardPage />} />
               <Route path="/admin/media" element={<MediaPage />} />
               <Route path="/admin/portfolio" element={<PressReleasePage />} />
+              <Route path="/admin/Directors" element={<Directors/>}/>
               <Route path="/admin/news" element={<NewsPage />} />
               <Route path="/admin/contact" element={<ContactPage />} />
+              <Route path="/admin/Team" element={< Team/>} />
+
+
             </Route>
           </Route>
 
