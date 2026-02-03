@@ -1,9 +1,38 @@
 // components/OurTeam.jsx
 import { useEffect, useState } from "react";
-import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaGlobe,
+  FaInstagram,
+  FaLinkedinIn,
+  FaTwitter,
+} from "react-icons/fa";
 import { getTeams } from "../../api/apis";
 // import { OUR_TEAM } from "../../Constant/ourTeamInfo";
 const API_URL = import.meta.env.VITE_API_URL;
+
+const SOCIAL_ICON_MAP = {
+  facebook: {
+    icon: FaFacebookF,
+    color: "hover:text-blue-600",
+  },
+  instagram: {
+    icon: FaInstagram,
+    color: "hover:text-pink-500",
+  },
+  linkedin: {
+    icon: FaLinkedinIn,
+    color: "hover:text-blue-700",
+  },
+  twitter: {
+    icon: FaTwitter,
+    color: "hover:text-sky-500",
+  },
+  website: {
+    icon: FaGlobe,
+    color: "hover:text-green-600",
+  },
+};
 
 const OurTeam = () => {
   const [teams, setTeams] = useState([]);
@@ -77,7 +106,7 @@ const OurTeam = () => {
               </div>
 
               {/* Social Icons */}
-              <div className="flex justify-center space-x-3 mt-4">
+              {/* <div className="flex justify-center space-x-3 mt-4">
                 {member.socialMedia?.facebook && (
                   <a
                     href={member.socials.facebook}
@@ -114,6 +143,31 @@ const OurTeam = () => {
                     <FaLinkedinIn size={16} />
                   </a>
                 )}
+              </div> */}
+              {/* Social Icons */}
+              <div className="flex justify-center space-x-3 mt-4">
+                {member.socialMedia?.map((social, index) => {
+                  const key = social.platform.toLowerCase();
+                  const config = SOCIAL_ICON_MAP[key];
+
+                  if (!config) return null; // unknown platform → ignore
+
+                  const Icon = config.icon;
+
+                  return (
+                    <a
+                      key={index}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.platform}
+                      className={`text-gray-500 transition-colors ${config.color}`}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <Icon size={16} />
+                    </a>
+                  );
+                })}
               </div>
 
               {/* View Full Profile */}

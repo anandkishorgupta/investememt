@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
+import { FaUserTie } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Card from '../components/common/Card';
 import { useAuth } from '../context/AuthContext';
-import { FaUserTie, FaUsers } from 'react-icons/fa';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -103,8 +103,11 @@ const DashboardPage = () => {
       // Handle pagination response format
       const mediaData = Array.isArray(mediaResult) ? mediaResult : mediaResult.media || [];
       const portfolioData = Array.isArray(portfolioResult) ? portfolioResult : portfolioResult.portfolio || [];
-      const directorData = Array.isArray(DirectorsResult) ? DirectorsResult : DirectorsResult.director || [];
-
+      const directorData =
+        DirectorsResult?.directors ??
+        DirectorsResult?.data ??
+        DirectorsResult?.director ??
+        [];
 
       const contactData = Array.isArray(contactResult) ? contactResult : contactResult.messages || [];
 
