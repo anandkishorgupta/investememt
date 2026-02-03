@@ -13,8 +13,16 @@ import {
     FaTimes,
     FaUserTie
 } from "react-icons/fa";
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 const DirectorModal = ({ director, onClose }) => {
+
+    const getImageUrl = (path) => {
+        if (!path) return "";
+        if (path.startsWith("http")) return path;
+        return `${API_URL}${path}`;
+    };
     const [isScrolled, setIsScrolled] = useState(false);
 
     const handleBackdropClick = (e) => {
@@ -84,7 +92,7 @@ const DirectorModal = ({ director, onClose }) => {
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-3">
                                         <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-amber-200">
-                                            <img src={director.image} alt={director.name} className="w-full h-full object-cover" />
+                                            <img src={getImageUrl(director.image)} alt={director.name} className="w-full h-full object-cover" />
                                         </div>
                                         <div>
                                             <h3 className="font-bold text-amber-900 text-sm">{director.name}</h3>
@@ -112,7 +120,7 @@ const DirectorModal = ({ director, onClose }) => {
 
                             <div className="flex items-center gap-4 mb-6">
                                 <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-xl">
-                                    <img src={director.image} alt={director.name} className="w-full h-full object-cover" />
+                                    <img src={getImageUrl(director.image)} alt={director.name} className="w-full h-full object-cover" />
                                 </div>
                                 <div className="flex-1">
                                     <h1 className="text-2xl font-bold text-gray-900">{director.name}</h1>
@@ -155,7 +163,7 @@ const DirectorModal = ({ director, onClose }) => {
                                     </a>
                                 )}
                                 {director.socials?.linkedin && (
-                                    <a href={director.socials.linkedin} className="flex-1 bg-amber-50 py-2.5 rounded-lg flex items-center justify-center gap-2">
+                                    <a href={director.socials.linkedin} className="flex-1 bg-amber-50 py-2.5 rounded-lg flex items-center justify-center gap-2 px-6">
                                         <FaLinkedinIn className="text-amber-600" />
                                         <span className="text-sm font-medium text-amber-700">LinkedIn</span>
                                     </a>
@@ -287,7 +295,7 @@ const DirectorModal = ({ director, onClose }) => {
                                     {/* Profile Image – closer to top */}
                                     <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-amber-200 shadow-lg mb-5 flex-shrink-0">
                                         <img
-                                            src={director.image}
+                                            src={getImageUrl(director.image)}
                                             alt={director.name}
                                             className="w-full h-full object-cover"
                                         />

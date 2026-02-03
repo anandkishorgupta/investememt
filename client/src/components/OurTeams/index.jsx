@@ -1,8 +1,34 @@
 // components/OurTeam.jsx
+import { useEffect, useState } from "react";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
-import { OUR_TEAM } from "../../Constant/ourTeamInfo";
+import { getTeams } from "../../api/apis";
+// import { OUR_TEAM } from "../../Constant/ourTeamInfo";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const OurTeam = () => {
+  const [teams, setTeams] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchTeams = async () => {
+      try {
+        const data = await getTeams();
+        console.log("data", data.teamMembers)
+        setTeams(data.teamMembers); // or data.data depending on API response
+      } catch (error) {
+        console.error("Failed to fetch teams", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTeams();
+  }, []);
+
+  const getImageUrl = (path) => {
+    if (!path) return "";
+    if (path.startsWith("http")) return path;
+    return `${API_URL}${path}`;
+  };
   return (
     <div className="py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background Glows */}
@@ -23,7 +49,7 @@ const OurTeam = () => {
 
       {/* Flexbox Cards */}
       <div className="flex flex-wrap lg:justify-start justify-center gap-8 max-w-7xl mx-auto">
-        {OUR_TEAM.map((member, index) => (
+        {teams.map((member, index) => (
           <div
             key={index}
             className="group bg-white/95 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg border border-amber-100/30 
@@ -33,7 +59,8 @@ const OurTeam = () => {
             {/* Image */}
             <div className="h-64 overflow-hidden relative">
               <img
-                src={member.image}
+                // src={member.image}
+                src={getImageUrl(member?.image)}
                 alt={member.name}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
@@ -46,12 +73,12 @@ const OurTeam = () => {
                 {member.alternativeName && (
                   <p className="text-sm text-amber-600 mt-1">({member.alternativeName})</p>
                 )}
-                <p className="text-amber-600 font-medium mt-1">{member.title}</p>
+                <p className="text-amber-600 font-medium mt-1">{member.role}</p>
               </div>
 
               {/* Social Icons */}
               <div className="flex justify-center space-x-3 mt-4">
-                {member.socials?.facebook && (
+                {member.socialMedia?.facebook && (
                   <a
                     href={member.socials.facebook}
                     target="_blank"
@@ -63,7 +90,7 @@ const OurTeam = () => {
                     <FaFacebookF size={16} />
                   </a>
                 )}
-                {member.socials?.instagram && (
+                {member.socialMedia?.instagram && (
                   <a
                     href={member.socials.instagram}
                     target="_blank"
@@ -75,7 +102,7 @@ const OurTeam = () => {
                     <FaInstagram size={16} />
                   </a>
                 )}
-                {member.socials?.linkedin && (
+                {member.socialMedia?.linkedin && (
                   <a
                     href={member.socials.linkedin}
                     target="_blank"

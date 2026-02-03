@@ -1,7 +1,13 @@
 // components/BODCard.jsx
 import { FaArrowRight, FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const BODCard = ({ director, onClick }) => {
+   const getImageUrl = (path) => {
+    if (!path) return "";
+    if (path.startsWith("http")) return path;
+    return `${API_URL}${path}`;
+  };
   return (
     <div
       className="group bg-white/95 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg border border-amber-100/30 
@@ -12,7 +18,7 @@ const BODCard = ({ director, onClick }) => {
       {/* Image */}
       <div className="h-64 overflow-hidden">
         <img
-          src={director.image}
+          src={getImageUrl(director.image)}
           alt={director.name}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />

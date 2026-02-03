@@ -22,3 +22,9 @@ export const getDirectors = async () => {
   const res = await axiosInstance.get("/directors");
   return res.data;
 };
+
+// get teams
+export const getTeams = async () => {
+  const res = await axiosInstance.get("/team");
+  return res.data;
+}
