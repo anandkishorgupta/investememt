@@ -113,7 +113,7 @@ const DirectorModal = ({ director, onClose }) => {
                         <div className="relative px-6 pt-6 pb-8">
                             <button
                                 onClick={onClose}
-                                className="absolute top-6 right-6 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg"
+                                className="absolute -top-1 right-6 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg"
                             >
                                 <FaTimes className="text-amber-600" size={18} />
                             </button>
@@ -214,6 +214,40 @@ const DirectorModal = ({ director, onClose }) => {
                                                 </span>
                                             ))}
                                         </div>
+                                    </section>
+                                )}
+                                {director.investments?.length > 0 && (
+                                    <section className="bg-blue-50 rounded-2xl p-5 border border-blue-100">
+                                        <h2 className="text-lg font-bold text-gray-900 mb-4">
+                                            Key Investments
+                                        </h2>
+                                        <div className="flex flex-wrap gap-2">
+                                            {director.investments.map((inv, i) => (
+                                                <span
+                                                    key={i}
+                                                    className="px-3 py-1.5 bg-white text-blue-700 rounded-full text-sm font-medium border border-blue-200"
+                                                >
+                                                    {inv}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </section>
+                                )}
+
+                                {director.community?.length > 0 && (
+                                    <section className="bg-emerald-50 rounded-2xl p-5 border border-emerald-100">
+                                        <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                            <FaHandsHelping className="text-emerald-600" />
+                                            Community Service
+                                        </h2>
+                                        <ul className="space-y-2">
+                                            {director.community.map((item, i) => (
+                                                <li key={i} className="flex items-start">
+                                                    <span className="text-emerald-500 mr-2">•</span>
+                                                    <span>{item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
                                     </section>
                                 )}
 
@@ -426,6 +460,7 @@ const DirectorModal = ({ director, onClose }) => {
 
                         {/* Right Panel */}
                         <div className="lg:w-3/5 p-8 overflow-y-auto max-h-[85vh]">
+                        
                             <h3 className="text-2xl font-bold text-amber-900 mb-6 pb-4 border-b border-amber-200">
                                 Professional Profile
                             </h3>
