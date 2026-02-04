@@ -36,7 +36,7 @@ const Hero = () => {
 
   return (
     <section
-      className="relative min-h-screen overflow-hidden bg-cover bg-center"
+      className="relative min-h-screen overflow-hidden bg-cover bg-center "
       style={{ backgroundImage: `url(${heroImage})` }}
     >
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
