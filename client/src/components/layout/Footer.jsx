@@ -191,7 +191,7 @@ const Footer = () => {
                 <li key={name} className="group">
                   <Link
                     to={path}
-                    className="flex items-center text-sm font-medium text-amber-700 hover:text-amber-600 transition-colors"
+                    className=" flex items-center text-sm font-medium text-amber-700 hover:text-amber-600 transition-colors"
                   >
                     <span className="w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-600 mr-0 group-hover:w-4 group-hover:mr-2 transition-all duration-300" />
                     {name}

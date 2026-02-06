@@ -8,7 +8,6 @@ export default defineConfig({
     port: 5173, 
     allowedHosts: [
     'localhost', 
-    'overwild-siena-nontemperately.ngrok-free.dev', // add your ngrok URL here
   ],
   },
   plugins: [
