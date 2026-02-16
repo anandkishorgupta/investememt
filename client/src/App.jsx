@@ -6,16 +6,17 @@ import { AuthProvider, useAuth } from "./admin/context/AuthContext";
 import { NotificationProvider } from "./admin/context/NotificationContext";
 
 import "./App.css";
+const whatsappPhone = import.meta.env.VITE_WHATSAPP_PHONE;
 
 /* ---------------- ADMIN ---------------- */
 import Layout from "./admin/components/layout/Layout";
 import Login from "./admin/pages/auth/Login";
 import ContactPage from "./admin/pages/Contact";
 import DashboardPage from "./admin/pages/Dashboard";
+import Directors from "./admin/pages/Directors";
 import MediaPage from "./admin/pages/Media";
 import NewsPage from "./admin/pages/News";
 import PressReleasePage from "./admin/pages/Portfolio";
-import Directors from "./admin/pages/Directors";
 import Team from "./admin/pages/Team";
 
 
@@ -34,6 +35,7 @@ import Invest from "./Pages/Invest";
 import BackToTop from "./utils/BackToTop";
 import GlobalCursor from "./utils/CursorGlow";
 import ScrollToTop from "./utils/ScrollToTop";
+import WhatsAppFloat from "./utils/WhatsAppFloat";
 
 /* =====================================================
    AUTH GUARDS
@@ -62,6 +64,7 @@ const PublicRoute = () => {
 ===================================================== */
 
 const PublicLayout = () => (
+
   <div className="overflow-x-hidden">
     <GlobalCursor />
     <ScrollToTop />
@@ -71,6 +74,12 @@ const PublicLayout = () => (
     </main>
     <Footer />
     <BackToTop />
+    <WhatsAppFloat
+      phone={whatsappPhone}
+      message="Hi, I'm interested in your services"
+      position="right"
+      tooltipText="Need help? Chat now!"
+    />
   </div>
 );
 
@@ -114,10 +123,10 @@ const App = () => {
               <Route path="/admin" element={<DashboardPage />} />
               <Route path="/admin/media" element={<MediaPage />} />
               <Route path="/admin/portfolio" element={<PressReleasePage />} />
-              <Route path="/admin/Directors" element={<Directors/>}/>
+              <Route path="/admin/Directors" element={<Directors />} />
               <Route path="/admin/news" element={<NewsPage />} />
               <Route path="/admin/contact" element={<ContactPage />} />
-              <Route path="/admin/Team" element={< Team/>} />
+              <Route path="/admin/Team" element={< Team />} />
 
 
             </Route>
@@ -125,6 +134,8 @@ const App = () => {
 
         </Routes>
       </AuthProvider>
+
+
     </Router>
   );
 };

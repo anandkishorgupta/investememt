@@ -26,7 +26,7 @@ const BackToTop = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
       transition={{ duration: 0.3 }}
-      className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-xl border border-amber-200 bg-gradient-to-br from-white to-amber-50 flex items-center justify-center text-amber-600 hover:text-amber-700 shadow-lg cursor-pointer"
+      className="fixed bottom-2 right-8 z-50 w-12 h-12 rounded-xl border border-amber-200 bg-gradient-to-br from-white to-amber-50 flex items-center justify-center text-amber-600 hover:text-amber-700 shadow-lg cursor-pointer"
     >
       <FaChevronUp />
     </motion.button>
