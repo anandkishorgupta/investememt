@@ -63,7 +63,7 @@ const WhatsAppFloat = memo(
                     whileTap={{ scale: 0.9 }}
                     className="
             relative flex items-center justify-center
-            w-14 h-14 rounded-full
+            w-12 h-12 rounded-full
             bg-gradient-to-br from-[#25D366] to-[#128C7E]
             text-white shadow-xl
           "
