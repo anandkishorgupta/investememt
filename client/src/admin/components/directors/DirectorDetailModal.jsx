@@ -143,7 +143,6 @@
 //   </div>
 // );
 // src/components/directors/DirectorDetailModal.jsx
-import React from "react";
 import { X } from "lucide-react";
 
 export default function DirectorDetailModal({ director, onClose }) {
@@ -188,8 +187,8 @@ export default function DirectorDetailModal({ director, onClose }) {
             <div className="md:w-1/3 flex flex-col items-center text-center">
               <div className="relative mb-4">
                 <img
-                  src={`${API_BASE}${image}`}
-                  alt={name}
+                  src={director.image}
+                  alt={director.name}
                   className="h-44 w-44 md:h-52 md:w-52 object-cover rounded-full border-8 border-amber-300 shadow-xl"
                   // onError={(e) => (e.currentTarget.src = "/images/no-image.png")}
                 />

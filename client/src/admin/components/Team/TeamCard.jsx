@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import { MoreVertical, Pencil, Trash2 } from "lucide-react";
+import { useState } from "react";
 
 export default function TeamCard({ member, onClick, onEdit, onDelete }) {
     const { _id, name, role, image, socialMedia } = member || {};
@@ -75,7 +75,7 @@ export default function TeamCard({ member, onClick, onEdit, onDelete }) {
             {/* Image */}
             <div className="relative h-64 bg-gradient-to-b from-gray-100 to-white flex items-center justify-center p-4">
                 <img
-                    src={`${API_BASE}${image}`}
+                    src={image}
                     alt={name}
                     className="h-52 w-52 object-cover rounded-full"
                 //   onError={(e) => (e.currentTarget.src = "/images/no-image.png")}

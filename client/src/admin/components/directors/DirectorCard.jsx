@@ -48,9 +48,8 @@
 //   );
 // }
 
-import React, { useState } from "react";
 import { MoreVertical, Pencil, Trash2 } from "lucide-react";
-import { all } from "axios";
+import { useState } from "react";
 
 export default function DirectorCard({
   director,
@@ -136,8 +135,8 @@ export default function DirectorCard({
       {/* Image */}
       <div className="relative h-64 bg-gradient-to-b from-gray-100 to-white flex items-center justify-center p-4">
         <img
-          src={`${API_BASE}${image}`}
-          alt={name}
+          src={director.image}
+          alt={director.name}
           className="h-52 w-52 object-cover rounded-full"
         // onError={(e) => (e.currentTarget.src = "/images/no-image.png")}
         />

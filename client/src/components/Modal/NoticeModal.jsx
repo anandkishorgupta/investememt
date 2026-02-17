@@ -114,7 +114,7 @@ function NoticeModal({ open, onClose, images }) {
             {images.map((img, idx) => (
               <img
                 key={idx}
-                src={`${API_URL}${img}`}
+                src={images}
                 alt={`notice-${idx}`}
                 className="w-full rounded-lg"
               />
