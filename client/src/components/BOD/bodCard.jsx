@@ -16,7 +16,7 @@ const BODCard = ({ director, onClick }) => {
       onClick={onClick}
     >
       {/* Image */}
-      <div className="overflow-hidden ">
+      <div className="h-64 overflow-hidden">
         <img
           src={getImageUrl(director.image)}
           alt={director.name}
