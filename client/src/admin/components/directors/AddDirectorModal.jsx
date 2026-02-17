@@ -1,6 +1,6 @@
 // src/components/directors/AddDirectorModal.jsx
-import React, { useState } from "react";
-import { X, Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, X } from "lucide-react";
+import { useState } from "react";
 
 const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
@@ -24,10 +24,10 @@ export default function AddDirectorModal({ onClose, onSuccess }) {
       twitter: "",
       facebook: "",
     },
-    roles: [""],
-    investments: [""],
-    community: [""],
-    skills: [""],
+    roles: [],
+    investments: [],
+    community: [],
+    skills: [],
   });
 
 

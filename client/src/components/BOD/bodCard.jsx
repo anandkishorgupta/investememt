@@ -16,11 +16,11 @@ const BODCard = ({ director, onClick }) => {
       onClick={onClick}
     >
       {/* Image */}
-      <div className="h-64 overflow-hidden">
+      <div className="overflow-hidden ">
         <img
           src={getImageUrl(director.image)}
           alt={director.name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className=" w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
         />
       </div>
 

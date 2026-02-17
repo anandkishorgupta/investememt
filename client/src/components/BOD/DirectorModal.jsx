@@ -15,7 +15,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 
 const DirectorModal = ({ director, onClose }) => {
-
+    console.log("Director data in modal:", director);
     const getImageUrl = (path) => {
         if (!path) return "";
         if (path.startsWith("http")) return path;
