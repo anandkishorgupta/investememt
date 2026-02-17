@@ -1,5 +1,3 @@
-
-
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import {
@@ -134,24 +132,30 @@ const DirectorModal = ({ director, onClose }) => {
 
                             {/* Quick Stats */}
                             <div className="grid grid-cols-2 gap-3 mb-6">
-                                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-amber-100 shadow-sm">
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center">
-                                            <FaGraduationCap className="text-amber-600" size={14} />
+                                {director?.experience && (
+                                    <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-amber-100 shadow-sm">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center">
+                                                <FaGraduationCap className="text-amber-600" size={14} />
+                                            </div>
+                                            <span className="font-bold text-amber-900">{director.experience || "—"}</span>
                                         </div>
-                                        <span className="font-bold text-amber-900">{director.experience || "—"}</span>
+                                        <p className="text-xs text-gray-600">Experience</p>
                                     </div>
-                                    <p className="text-xs text-gray-600">Experience</p>
-                                </div>
-                                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-amber-100 shadow-sm">
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center">
-                                            <FaBriefcase className="text-amber-600" size={14} />
+                                )}
+                                {
+                                    director?.specialization && (
+                                        <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-amber-100 shadow-sm">
+                                            <div className="flex items-center gap-2 mb-2">
+                                                <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center">
+                                                    <FaBriefcase className="text-amber-600" size={14} />
+                                                </div>
+                                                <span className="font-bold text-amber-900">{director.specialization || "—"}</span>
+                                            </div>
+                                            <p className="text-xs text-gray-600">Specialization</p>
                                         </div>
-                                        <span className="font-bold text-amber-900">{director.specialization || "—"}</span>
-                                    </div>
-                                    <p className="text-xs text-gray-600">Specialization</p>
-                                </div>
+                                    )
+                                }
                             </div>
 
                             {/* Social Links */}
@@ -172,12 +176,17 @@ const DirectorModal = ({ director, onClose }) => {
 
                             {/* Content Sections */}
                             <div className="space-y-6 pb-8">
-                                <section className="bg-gradient-to-br from-white to-amber-50/30 rounded-2xl p-5 border border-amber-100">
-                                    <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                        Professional Overview
-                                    </h2>
-                                    <p className="text-gray-700 leading-relaxed text-base">{director.description}</p>
-                                </section>
+                                {
+                                    director?.description && (
+                                        <section className="bg-gradient-to-br from-white to-amber-50/30 rounded-2xl p-5 border border-amber-100">
+                                            <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                                Professional Overview
+                                            </h2>
+                                            <p className="text-gray-700 leading-relaxed text-base">{director.description}</p>
+                                        </section>
+                                    )
+                                }
+
 
                                 {director.education && (
                                     <section className="bg-white rounded-2xl p-5 border border-blue-100 shadow-sm">
@@ -250,19 +259,6 @@ const DirectorModal = ({ director, onClose }) => {
                                         </ul>
                                     </section>
                                 )}
-
-                                {/* {hasPortfolio && (
-                                    <a
-                                        href={director.portfolio}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="block w-fit items-center mx-auto px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-2xl text-center font-bold text-lg shadow-lg shadow-amber-200/50 hover:shadow-xl hover:shadow-amber-200/70 transition-all active:scale-[0.98]"
-                                    >
-                                        <div className="flex items-center justify-center gap-3">
-                                            <FaBriefcase /> View Full Portfolio <FaExternalLinkAlt size={12} />
-                                        </div>
-                                    </a>
-                                )} */}
                                 {hasPortfolio && (
                                     <a
                                         href={director.portfolio}
@@ -394,35 +390,29 @@ const DirectorModal = ({ director, onClose }) => {
 
                                     {/* Stats */}
                                     <div className="grid grid-cols-2 gap-3 w-full max-w-xs mt-4">
-                                        <div className="text-center p-3 bg-white rounded-xl shadow-sm border border-amber-100">
-                                            <FaGraduationCap className="text-amber-600 mx-auto text-lg" />
-                                            <p className="text-amber-800 font-bold mt-1.5 text-sm md:text-base">
-                                                {director.experience || "—"}
-                                            </p>
-                                            <p className="text-xs text-gray-600 mt-1">Experience</p>
-                                        </div>
-                                        <div className="text-center p-3 bg-white rounded-xl shadow-sm border border-amber-100">
-                                            <FaBriefcase className="text-amber-600 mx-auto text-lg" />
-                                            <p className="text-amber-800 font-bold mt-1.5 text-sm md:text-base">
-                                                {director.specialization || "—"}
-                                            </p>
-                                            <p className="text-xs text-gray-600 mt-1">Specialization</p>
-                                        </div>
+                                        {
+                                            director?.experience && (
+                                                <div className="text-center p-3 bg-white rounded-xl shadow-sm border border-amber-100">
+                                                    <FaGraduationCap className="text-amber-600 mx-auto text-lg" />
+                                                    <p className="text-amber-800 font-bold mt-1.5 text-sm md:text-base">
+                                                        {director.experience || "—"}
+                                                    </p>
+                                                    <p className="text-xs text-gray-600 mt-1">Experience</p>
+                                                </div>
+                                            )
+                                        }
+                                        {director?.specialization && (
+                                            <div className="text-center p-3 bg-white rounded-xl shadow-sm border border-amber-100">
+                                                <FaBriefcase className="text-amber-600 mx-auto text-lg" />
+                                                <p className="text-amber-800 font-bold mt-1.5 text-sm md:text-base">
+                                                    {director.specialization || "—"}
+                                                </p>
+                                                <p className="text-xs text-gray-600 mt-1">Specialization</p>
+                                            </div>
+                                        )}
+
                                     </div>
 
-                                    {/* Portfolio Button */}
-                                    {/* {hasPortfolio && (
-                                        <a
-                                            href={director.portfolio}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="mt-6 px-5 py-2.5 bg-gradient-to-r from-amber-600 to-orange-500 text-white rounded-lg hover:from-amber-700 hover:to-orange-600 transition-all font-medium flex items-center justify-center space-x-2 shadow-md text-sm md:text-base"
-                                        >
-                                            <FaBriefcase size={14} />
-                                            <span>View Full Portfolio</span>
-                                            <FaExternalLinkAlt size={10} />
-                                        </a>
-                                    )} */}
                                     {hasPortfolio && (
                                         <a
                                             href={director.portfolio}
@@ -460,7 +450,6 @@ const DirectorModal = ({ director, onClose }) => {
 
                         {/* Right Panel */}
                         <div className="lg:w-3/5 p-8 overflow-y-auto max-h-[85vh]">
-                        
                             <h3 className="text-2xl font-bold text-amber-900 mb-6 pb-4 border-b border-amber-200">
                                 Professional Profile
                             </h3>
