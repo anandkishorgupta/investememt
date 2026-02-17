@@ -81,7 +81,7 @@ const API_URL = import.meta.env.VITE_API_URL ;
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none"
-                placeholder="admin@gmail.com"
+                placeholder="example@gmail.com"
                 required
               />
             </div>
@@ -122,18 +122,13 @@ const API_URL = import.meta.env.VITE_API_URL ;
             </button>
           </form>
 
-          {/* Helper Text */}
-          <div className="mt-6 text-center">
-            <p className="text-sm text-gray-500">
-              Default credentials: admin@gmail.com / admin
-            </p>
-          </div>
+          
         </div>
 
         {/* Footer */}
         <div className="text-center mt-6">
           <p className="text-xs text-gray-500">
-            © 2024 Admin Panel. All rights reserved.
+            © 2026 Admin Panel. All rights reserved.
           </p>
         </div>
       </div>
