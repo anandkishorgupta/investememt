@@ -134,7 +134,7 @@ const CARD_WIDTH_PX = 208;
 const PartnerCard = ({ logo, index }) => {
   return (
     <div
-      className="mx-6 flex items-center bg-white p-3 shadow-md rounded-2xl justify-center opacity-50 hover:opacity-100 transition"
+      className="mx-6 flex items-center bg-white p-3 shadow-md rounded-2xl justify-center opacity-60 hover:opacity-100 transition"
       style={{ width: CARD_WIDTH_PX }}
     >
       <img
